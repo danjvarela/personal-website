@@ -5,6 +5,12 @@ export interface SocialLinkProps {
 
 export default function SocialLink({ icon, href }: SocialLinkProps) {
   return (
-    <a href={href} target="_blank" className="hover:bg-gray-400/30 p-2 rounded-full">{icon}</a>
+    <a
+      href={href}
+      target="_blank"
+      className="hover:bg-gray-400/30 p-2 rounded-full"
+    >
+      {icon}
+    </a>
   )
 }
