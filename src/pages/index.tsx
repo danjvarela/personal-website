@@ -11,9 +11,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className='h-screen'>
+      <div className="h-screen">
         <Navbar />
-        <div className='w-full flex justify-center'>
+        <div className="w-full flex justify-center">
           <Title />
         </div>
       </div>
