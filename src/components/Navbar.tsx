@@ -1,5 +1,13 @@
+import Image from "next/image"
+import Navmenu from "./Navmenu"
+
 export default function Navbar() {
   return (
-    <div>This is the Navbar</div>
+    <nav className="w-full border-gray-300 h-16 flex justify-center fixed bg-white/30 backdrop-blur-sm">
+      <div className="w-full max-w-3xl h-full flex items-center justify-between px-4">
+        <Image src='/images/logo.png' alt='logo' width={40} height={40}/>
+        <Navmenu />
+      </div>
+    </nav>
   )
 }
