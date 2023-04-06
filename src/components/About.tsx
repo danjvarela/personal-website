@@ -1,7 +1,8 @@
 import Section from "./Section"
 import Image from "next/image"
+import Badge from "./Badge"
 
-const skills = ["React.js", "Javascript", "HTML", "CSS", "Ruby on Rails", "Ruby", "Tailwindcss", "Git", "Lua", "Adobe Illustrator"]
+const skills = ["React.js", "Javascript", "HTML", "CSS", "SASS", "Ruby on Rails", "Ruby", "Tailwindcss", "Chakra UI", "Git", "Lua", "Adobe Illustrator"]
 
 export default function About() {
   return (
@@ -20,7 +21,7 @@ export default function About() {
       <div className="w-full flex flex-wrap gap-1">
         {
           skills.map(skill => (
-            <div className="p-2 text-xs text-gray-500 border border-gray-400 rounded-full" key={skill}>{skill}</div>
+            <Badge key={skill}>{skill}</Badge>
           ))
         } 
       </div>

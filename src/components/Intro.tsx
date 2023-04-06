@@ -27,7 +27,7 @@ export default function Intro() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
         >
-          <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold md:text-xl py-2 px-4 rounded-full no-underline" href="#about">
+          <a href="#about" className="inline-flex items-center px-3 py-2 text-lg md:text-xl font-bold text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 no-underline">
             About me
           </a>
         </motion.div>
@@ -38,8 +38,8 @@ export default function Intro() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
         >
-          <a className="bg-gray-500 hover:bg-gray-700 text-white font-bold md:text-xl py-2 px-4 rounded-full no-underline" href="#works">
-            My Works
+          <a href="#works" className="inline-flex items-center px-3 py-2 text-lg md:text-xl font-bold text-center text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 no-underline">
+            My works
           </a>
         </motion.div>
       </div>
