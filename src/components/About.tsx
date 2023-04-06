@@ -24,6 +24,8 @@ export default function About() {
           ))
         } 
       </div>
+      <h2 className="w-full text-left mt-5">I ♥</h2>
+      <p className="w-full">Playing guitar, Neovim, Programming, Watching movies and anime.</p>
     </Section>
   )
 }
