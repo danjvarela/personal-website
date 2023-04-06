@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar'
 import Intro from '@/components/Intro'
 import About from '@/components/About'
 import Works from '@/components/Works'
+import BackToTop from '@/components/BackToTop'
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <Intro />
         <About />
         <Works />
+        <BackToTop />
       </div>
     </>
   )

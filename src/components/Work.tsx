@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { FiArrowRight, FiGithub } from 'react-icons/fi'
 import Badge from './Badge'
+import WorkLink from './WorkLink'
 
 export interface WorkProps {
   title: string
@@ -49,22 +50,15 @@ export default function Work({
         </div>
         <p className="mb-3 font-normal text-gray-700">{description}</p>
         <div className="flex gap-4">
-          <a
-            href={url}
-            target="_blank"
-            className="inline-flex gap-1 items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
-          >
+          <WorkLink url={url} color="blue">
             Check this out
             <FiArrowRight />
-          </a>
-          <a
-            href={sourceCode}
-            target="_blank"
-            className="inline-flex gap-1 items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300"
-          >
+          </WorkLink>
+
+          <WorkLink url={sourceCode} color="gray">
             View Source
             <FiGithub />
-          </a>
+          </WorkLink>
         </div>
       </div>
     </motion.div>
