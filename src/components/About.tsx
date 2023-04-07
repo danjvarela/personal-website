@@ -60,6 +60,12 @@ export default function About() {
       <p className="w-full">
         Playing guitar, Neovim, Programming, Watching movies and anime.
       </p>
+      <h2 className="w-full text-left mt-5">I plan to learn/master...</h2>
+      <p className="w-full">
+        <a className="text-blue-700 no-underline hover:underline" href="https://nextjs.org/" target='_blank'>Next.js</a>,
+        <a className="text-blue-700 no-underline hover:underline" href="https://vuejs.org/" target='_blank'>Vue.js</a>,
+        Typescript, Rust, Functional Programming.
+      </p>
     </Section>
   )
 }
