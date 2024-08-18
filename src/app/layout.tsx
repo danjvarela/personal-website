@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import "@/styles/globals.css"
 import { ThemeProvider } from "next-themes"
 import { cn } from "@/lib/utils"
+import { Header } from "@/components/header"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -25,7 +26,10 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute="class">
-          <div className="mx-auto w-full max-w-2xl">{children}</div>
+          <div className="mx-auto w-full max-w-2xl">
+            <Header />
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>

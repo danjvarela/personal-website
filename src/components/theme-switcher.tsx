@@ -49,7 +49,7 @@ export function ThemeSwitcher({ className, ...props }: ThemeSwitcherProps) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          className={cn("h-8 w-8 p-0", className)}
+          className={cn("h-9 w-9 p-0", className)}
           variant="outline"
           {...props}
         >

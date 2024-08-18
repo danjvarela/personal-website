@@ -1,9 +1,3 @@
-import { ThemeSwitcher } from "@/components/theme-switcher"
-
 export default function Home() {
-  return (
-    <div>
-      <ThemeSwitcher />
-    </div>
-  )
+  return <main className="px-2">hello</main>
 }
