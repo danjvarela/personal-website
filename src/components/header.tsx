@@ -40,7 +40,7 @@ export function Header() {
             href={navLink.href}
             key={navLink.label}
             className={cn(
-              "text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
+              "font-medium text-muted-foreground transition-colors hover:text-foreground",
               pathname === navLink.href && "text-foreground"
             )}
           >
