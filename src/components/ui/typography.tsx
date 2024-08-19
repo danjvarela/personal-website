@@ -19,7 +19,7 @@ export const typographyVariants = cva("", {
       ul: "my-6 ml-6 list-disc [&>li]:mt-2",
       ol: "my-6 ml-6 list-decimal [&>li]:mt-2",
       code: "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-medium",
-      a: "transition-colors underline underline-offset-4 opacity-75 hover:opacity-100",
+      a: "transition-colors underline underline-offset-4 opacity-75 hover:opacity-100 group-hover/link:opacity-100",
 
       lead: "text-xl text-muted-foreground",
       large: "text-lg font-semibold",

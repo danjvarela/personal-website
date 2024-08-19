@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { HEADER_HEIGHT } from "@/lib/constants"
+import { headerHeight } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/logo"
@@ -29,7 +29,7 @@ export function Header() {
   return (
     <header
       className="flex items-center justify-between px-2"
-      style={{ height: HEADER_HEIGHT }}
+      style={{ height: headerHeight }}
     >
       <div className="flex items-center gap-4">
         <Link href="/">
