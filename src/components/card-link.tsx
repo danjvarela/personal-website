@@ -27,6 +27,7 @@ export function CardLink({ title, href, description, className }: Props) {
           className
         ),
       })}
+      target={isExternal ? "_blank" : undefined}
     >
       <div
         className={typographyVariants({
