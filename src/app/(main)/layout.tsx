@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 import "@/styles/globals.css"
 import { ThemeProvider } from "next-themes"
+import { Toaster } from "@/components/ui/toaster"
 import { Header } from "@/components/header"
+import { ThemeSwitcher } from "@/components/theme-switcher"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,9 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <ThemeProvider attribute="class">
+      <Toaster />
       <div className="mx-auto w-full max-w-2xl">
         <Header />
         {children}
+        <div className="fixed bottom-4 right-4 md:hidden">
+          <ThemeSwitcher />
+        </div>
       </div>
     </ThemeProvider>
   )

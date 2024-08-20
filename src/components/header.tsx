@@ -4,9 +4,9 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { headerHeight } from "@/lib/constants"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/logo"
 import { ThemeSwitcher } from "@/components/theme-switcher"
+import { HireMe } from "./hire-me"
 
 const navLinks = [
   {
@@ -50,7 +50,7 @@ export function Header() {
       </div>
       <div className="flex items-center gap-4">
         <ThemeSwitcher className="hidden md:inline-flex" />
-        <Button size="sm">Hire me</Button>
+        <HireMe />
       </div>
     </header>
   )
