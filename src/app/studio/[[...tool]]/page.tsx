@@ -15,6 +15,5 @@ export const dynamic = "force-static"
 export { metadata, viewport } from "next-sanity/studio"
 
 export default function StudioPage() {
-  /* @ts-expect-error NextStudio can be used as a component  */
   return <NextStudio config={config} />
 }

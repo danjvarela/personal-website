@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React from "react"
 import NextLink from "next/link"
 import { MoveUpRight } from "lucide-react"
-import { cn, isExternalUrl } from "@/lib/utils"
+import { cn } from "@/lib/utils"
+import { useIsExternalLink } from "@/hooks/useIsExternalLink"
 import { IconAsText } from "./icon-as-text"
 import { typographyVariants } from "./typography"
 
@@ -20,25 +21,9 @@ const Link = React.forwardRef<
   React.ElementRef<typeof NextLink>,
   React.ComponentPropsWithoutRef<typeof NextLink>
 >(({ className, children, href, target, ...props }, ref) => {
-  const [mounted, setMounted] = useState(false)
+  const isExternalLink = useIsExternalLink()
 
-  const isExternal = isExternalUrl(href)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted)
-    return (
-      <NextLink
-        href={href}
-        className={cn("group/link", typographyVariants({ as: "a", className }))}
-        {...props}
-        ref={ref}
-      >
-        {children}
-      </NextLink>
-    )
+  const isExternal = isExternalLink(href)
 
   return (
     <NextLink

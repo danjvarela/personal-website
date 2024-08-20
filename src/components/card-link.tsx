@@ -1,7 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { cn, isExternalUrl } from "@/lib/utils"
+import { cn } from "@/lib/utils"
+import { useIsExternalLink } from "@/hooks/useIsExternalLink"
 import { ExternalLinkIcon } from "./ui/link"
 import { typographyVariants } from "./ui/typography"
 
@@ -13,7 +14,8 @@ type Props = {
 }
 
 export function CardLink({ title, href, description, className }: Props) {
-  const isExternal = isExternalUrl(href)
+  const isExternalLink = useIsExternalLink()
+  const isExternal = isExternalLink(href)
 
   return (
     <Link
