@@ -6,8 +6,6 @@ import { PortableText } from "@/components/portable-text"
 export default async function WorksPage() {
   const worksContent = await sanityFetch<SanityDocument>({ query: worksQuery })
 
-  console.log("workContent", worksContent)
-
   return (
     <main className="px-2 py-8">
       {worksContent?.content && <PortableText value={worksContent.content} />}
