@@ -1,8 +1,5 @@
-import Image from "next/image"
 import NextLink from "next/link"
-import { urlFor } from "@/sanity/lib/image"
 import { SiGithub } from "@icons-pack/react-simple-icons"
-import { SanityImageSource } from "@sanity/image-url/lib/types/types"
 import isEmpty from "lodash/isEmpty"
 import { PortableTextProps } from "next-sanity"
 import { Badge } from "@/components/ui/badge"
@@ -10,7 +7,6 @@ import { IconAsText } from "@/components/ui/icon-as-text"
 import { Link } from "@/components/ui/link"
 import { H4 } from "@/components/ui/typography"
 import { PortableText } from "@/components/portable-text"
-import defaultThumbnail from "./assets/default-thumbnail.svg"
 
 type Props = {
   project: {
@@ -25,9 +21,9 @@ type Props = {
 
 export function Project({ project }: Props) {
   return (
-    <div className="group/project-card relative mt-6 overflow-clip rounded-lg border p-4 transition-colors hover:border-muted-foreground/30">
+    <div className="group/project-card relative mt-6 rounded-lg border p-4 transition-colors hover:border-muted-foreground/30">
       {project.githubLink && (
-        <div className="absolute right-0 top-0 block bg-primary/75 p-1 text-xs text-primary-foreground transition-colors hover:bg-primary md:hidden md:group-hover/project-card:block">
+        <div className="absolute -top-2 right-0 block rounded-tr-full bg-primary/75 px-2 py-0.5 text-xs text-primary-foreground transition-all duration-300 hover:bg-primary md:opacity-0 md:group-hover/project-card:opacity-100">
           <NextLink href={project.githubLink} target="_blank">
             <IconAsText icon={SiGithub} /> View source code
           </NextLink>
@@ -35,7 +31,9 @@ export function Project({ project }: Props) {
       )}
 
       <H4 className="mt-0">
-        <Link href={project.deployedLink}>{project.title}</Link>
+        <Link href={project.deployedLink} className="opacity-100">
+          {project.title}
+        </Link>
       </H4>
 
       <PortableText value={project.description} />

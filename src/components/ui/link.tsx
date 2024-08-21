@@ -28,7 +28,13 @@ const Link = React.forwardRef<
   return (
     <NextLink
       href={href}
-      className={cn("group/link", typographyVariants({ as: "a", className }))}
+      className={cn(
+        "group/link",
+        typographyVariants({ as: "a" }),
+        !isExternal &&
+          "underline decoration-transparent underline-offset-4 duration-300 hover:decoration-inherit group-hover/link:decoration-inherit",
+        className
+      )}
       target={target || isExternal ? "_blank" : undefined}
       {...props}
       ref={ref}

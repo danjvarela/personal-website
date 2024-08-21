@@ -1,5 +1,6 @@
 import React from "react"
 import { cva } from "class-variance-authority"
+import { cn } from "@/lib/utils"
 
 export const typographyVariants = cva("", {
   variants: {
@@ -19,7 +20,7 @@ export const typographyVariants = cva("", {
       ul: "my-6 ml-6 list-disc [&>li]:mt-2",
       ol: "my-6 ml-6 list-decimal [&>li]:mt-2",
       code: "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-medium",
-      a: "transition-colors underline underline-offset-4 opacity-75 hover:opacity-100 group-hover/link:opacity-100",
+      a: "transition-colors opacity-60 hover:opacity-100 group-hover/link:opacity-100",
 
       lead: "text-xl text-muted-foreground",
       large: "text-lg font-semibold",
@@ -35,7 +36,7 @@ const H1 = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <h1
-      className={typographyVariants({ as: "h1", className })}
+      className={cn(typographyVariants({ as: "h1" }), className)}
       {...props}
       ref={ref}
     />
@@ -49,7 +50,7 @@ const H2 = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <h2
-      className={typographyVariants({ as: "h2", className })}
+      className={cn(typographyVariants({ as: "h2" }), className)}
       {...props}
       ref={ref}
     />
@@ -63,7 +64,7 @@ const H3 = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <h3
-      className={typographyVariants({ as: "h3", className })}
+      className={cn(typographyVariants({ as: "h3" }), className)}
       {...props}
       ref={ref}
     />
@@ -77,7 +78,7 @@ const H4 = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <h4
-      className={typographyVariants({ as: "h4", className })}
+      className={cn(typographyVariants({ as: "h4" }), className)}
       {...props}
       ref={ref}
     />
@@ -91,7 +92,7 @@ const Table = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <table
-      className={typographyVariants({ as: "table", className })}
+      className={cn(typographyVariants({ as: "table" }), className)}
       {...props}
       ref={ref}
     />
@@ -105,7 +106,7 @@ const Tbody = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <tbody
-      className={typographyVariants({ as: "tbody", className })}
+      className={cn(typographyVariants({ as: "tbody" }), className)}
       {...props}
       ref={ref}
     />
@@ -119,7 +120,7 @@ const Td = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <td
-      className={typographyVariants({ as: "td", className })}
+      className={cn(typographyVariants({ as: "td" }), className)}
       {...props}
       ref={ref}
     />
@@ -133,7 +134,7 @@ const Thead = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <thead
-      className={typographyVariants({ as: "thead", className })}
+      className={cn(typographyVariants({ as: "thead" }), className)}
       {...props}
       ref={ref}
     />
@@ -147,7 +148,7 @@ const Th = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <th
-      className={typographyVariants({ as: "th", className })}
+      className={cn(typographyVariants({ as: "th" }), className)}
       {...props}
       ref={ref}
     />
@@ -161,7 +162,7 @@ const Tr = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <tr
-      className={typographyVariants({ as: "tr", className })}
+      className={cn(typographyVariants({ as: "tr" }), className)}
       {...props}
       ref={ref}
     />
@@ -175,7 +176,7 @@ const Blockquote = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <blockquote
-      className={typographyVariants({ as: "blockquote", className })}
+      className={cn(typographyVariants({ as: "blockquote" }), className)}
       {...props}
       ref={ref}
     />
@@ -189,7 +190,7 @@ const P = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <p
-      className={typographyVariants({ as: "p", className })}
+      className={cn(typographyVariants({ as: "p" }), className)}
       {...props}
       ref={ref}
     />
@@ -203,7 +204,7 @@ const Ul = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <ul
-      className={typographyVariants({ as: "ul", className })}
+      className={cn(typographyVariants({ as: "ul" }), className)}
       {...props}
       ref={ref}
     />
@@ -217,7 +218,7 @@ const Ol = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <ol
-      className={typographyVariants({ as: "ol", className })}
+      className={cn(typographyVariants({ as: "ol" }), className)}
       {...props}
       ref={ref}
     />
@@ -231,7 +232,7 @@ const Code = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <code
-      className={typographyVariants({ as: "code", className })}
+      className={cn(typographyVariants({ as: "code" }), className)}
       {...props}
       ref={ref}
     />
