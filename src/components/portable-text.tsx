@@ -1,9 +1,6 @@
-import { sanityFetch } from "@/sanity/lib/client"
-import { homeQuery } from "@/sanity/lib/queries"
 import * as SiIcons from "@icons-pack/react-simple-icons"
 import startCase from "lodash/startCase"
 import {
-  SanityDocument,
   PortableText as SanityPortableText,
   PortableTextProps as SanityPortableTextProps,
 } from "next-sanity"
@@ -18,6 +15,7 @@ import {
   typographyVariants,
 } from "@/components/ui/typography"
 import { CardLink } from "@/components/card-link"
+import { Project } from "./project"
 
 const components: SanityPortableTextProps["components"] = {
   types: {
@@ -45,6 +43,9 @@ const components: SanityPortableTextProps["components"] = {
           <Link href={value.url || ""}>{value.title}</Link>
         </span>
       )
+    },
+    project: ({ value }) => {
+      return <Project project={value} />
     },
   },
   block: {

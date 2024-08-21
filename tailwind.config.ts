@@ -19,6 +19,9 @@ const config = {
       },
     },
     extend: {
+      aspectRatio: {
+        golden: "1.618",
+      },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
