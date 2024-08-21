@@ -21,11 +21,6 @@ export const projectType = defineType({
       type: "url",
     }),
     defineField({
-      title: "Thumbnail",
-      name: "thumbnail",
-      type: "image",
-    }),
-    defineField({
       title: "Description",
       name: "description",
       type: "array",
