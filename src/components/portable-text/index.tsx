@@ -1,3 +1,5 @@
+import Image from "next/image"
+import { urlFor } from "@/sanity/lib/image"
 import * as SiIcons from "@icons-pack/react-simple-icons"
 import startCase from "lodash/startCase"
 import {
@@ -7,15 +9,19 @@ import {
 import { IconAsText } from "@/components/ui/icon-as-text"
 import { Link } from "@/components/ui/link"
 import {
+  Code,
   H1,
   H2,
   H3,
   H4,
+  Ol,
   P,
   typographyVariants,
+  Ul,
 } from "@/components/ui/typography"
 import { CardLink } from "@/components/card-link"
-import { Project } from "./project"
+import { Project } from "../project"
+import { CodeBlock } from "./code-block"
 
 const components: SanityPortableTextProps["components"] = {
   types: {
@@ -47,6 +53,29 @@ const components: SanityPortableTextProps["components"] = {
     project: ({ value }) => {
       return <Project project={value} />
     },
+    image: ({ value }) => {
+      return (
+        <Image
+          src={urlFor(value)
+            .auto("format")
+            .width(800)
+            .height(500)
+            .bg("f1f5f9")
+            .quality(40)
+            .fit("fillmax")
+            .url()}
+          alt=""
+          sizes="(max-width: 800px) 100vw, 800px"
+          width={800}
+          height={500}
+          placeholder="blur"
+          blurDataURL={value.asset.metadata.lqip}
+        />
+      )
+    },
+    code: ({ value }) => {
+      return <CodeBlock value={value} />
+    },
   },
   block: {
     normal: ({ children }) => <P>{children}</P>,
@@ -55,8 +84,13 @@ const components: SanityPortableTextProps["components"] = {
     h3: ({ children }) => <H3>{children}</H3>,
     h4: ({ children }) => <H4>{children}</H4>,
   },
+  list: {
+    bullet: ({ children }) => <Ul>{children}</Ul>,
+    number: ({ children }) => <Ol>{children}</Ol>,
+  },
   marks: {
     link: ({ value, children }) => <Link href={value?.href}>{children}</Link>,
+    code: ({ children }) => <Code>{children}</Code>,
   },
 }
 

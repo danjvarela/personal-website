@@ -3,6 +3,7 @@
 /**
  * This configuration is used to for the Sanity Studio that’s mounted on the `/app/studio/[[...tool]]/page.tsx` route
  */
+import { codeInput } from "@sanity/code-input"
 import { visionTool } from "@sanity/vision"
 import { defineConfig } from "sanity"
 import { iconPicker } from "sanity-plugin-icon-picker"
@@ -24,5 +25,6 @@ export default defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
     iconPicker(),
+    codeInput(),
   ],
 })
