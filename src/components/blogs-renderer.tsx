@@ -2,7 +2,7 @@
 
 import { useMemo } from "react"
 import { useSearchParams } from "next/navigation"
-import { BlogsQueryResult } from "sanity.types"
+import { BlogQueryResult, BlogsQueryResult } from "sanity.types"
 import { Blog } from "./blog"
 
 type Props = {
@@ -18,5 +18,7 @@ export function BlogsRenderer({ blogs }: Props) {
     return blogs.filter((blog) => blog.tags?.includes(tag))
   }, [blogs, tag])
 
-  return filteredBlogs.map((blog) => <Blog key={blog._id} blog={blog} />)
+  return filteredBlogs.map((blog) => (
+    <Blog key={blog._id} blog={blog as BlogQueryResult} />
+  ))
 }

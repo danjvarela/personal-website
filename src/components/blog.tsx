@@ -1,15 +1,17 @@
 import { format, formatDistanceToNow } from "date-fns"
-import { BlogsQueryResult } from "sanity.types"
+import { BlogQueryResult } from "sanity.types"
 import { cn } from "@/lib/utils"
 import { H4, typographyVariants } from "@/components/ui/typography"
 import { BlogTags } from "./blog-tags"
 import { Link } from "./ui/link"
 
 type Props = {
-  blog: BlogsQueryResult[number]
+  blog: BlogQueryResult
 }
 
 export function Blog({ blog }: Props) {
+  if (!blog) return null
+
   const publishedDate = new Date(blog._createdAt)
   const formattedDate = format(publishedDate, "MMMM dd, yyyy")
   const formattedFromNow = formatDistanceToNow(publishedDate)

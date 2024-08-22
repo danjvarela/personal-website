@@ -122,63 +122,6 @@ export type Blog = {
   tags?: Array<string>
 }
 
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop"
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
-}
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot"
-  x?: number
-  y?: number
-  height?: number
-  width?: number
-}
-
-export type SanityImageAsset = {
-  _id: string
-  _type: "sanity.imageAsset"
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  originalFilename?: string
-  label?: string
-  title?: string
-  description?: string
-  altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
-  uploadId?: string
-  path?: string
-  url?: string
-  metadata?: SanityImageMetadata
-  source?: SanityAssetSourceData
-}
-
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData"
-  name?: string
-  id?: string
-  url?: string
-}
-
-export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata"
-  location?: Geopoint
-  dimensions?: SanityImageDimensions
-  palette?: SanityImagePalette
-  lqip?: string
-  blurHash?: string
-  hasAlpha?: boolean
-  isOpaque?: boolean
-}
-
 export type Slug = {
   _type: "slug"
   current?: string
@@ -299,6 +242,144 @@ export type Home = {
         _key: string
       } & LinkWithDescription)
   >
+  seo?: SeoMetaFields
+}
+
+export type MetaTag = {
+  _type: "metaTag"
+  metaAttributes?: Array<
+    {
+      _key: string
+    } & MetaAttribute
+  >
+}
+
+export type MetaAttribute = {
+  _type: "metaAttribute"
+  attributeKey?: string
+  attributeType?: "string" | "image"
+  attributeValueImage?: {
+    asset?: {
+      _ref: string
+      _type: "reference"
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: "image"
+  }
+  attributeValueString?: string
+}
+
+export type SeoMetaFields = {
+  _type: "seoMetaFields"
+  nofollowAttributes?: boolean
+  metaTitle?: string
+  metaDescription?: string
+  metaImage?: {
+    asset?: {
+      _ref: string
+      _type: "reference"
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: "image"
+  }
+  seoKeywords?: Array<string>
+  openGraph?: OpenGraph
+  additionalMetaTags?: Array<
+    {
+      _key: string
+    } & MetaTag
+  >
+  twitter?: Twitter
+}
+
+export type Twitter = {
+  _type: "twitter"
+  cardType?: string
+  creator?: string
+  site?: string
+  handle?: string
+}
+
+export type OpenGraph = {
+  _type: "openGraph"
+  url?: string
+  image?: {
+    asset?: {
+      _ref: string
+      _type: "reference"
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: "image"
+  }
+  title?: string
+  description?: string
+  siteName?: string
+}
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop"
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
+}
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot"
+  x?: number
+  y?: number
+  height?: number
+  width?: number
+}
+
+export type SanityImageAsset = {
+  _id: string
+  _type: "sanity.imageAsset"
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  metadata?: SanityImageMetadata
+  source?: SanityAssetSourceData
+}
+
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData"
+  name?: string
+  id?: string
+  url?: string
+}
+
+export type SanityImageMetadata = {
+  _type: "sanity.imageMetadata"
+  location?: Geopoint
+  dimensions?: SanityImageDimensions
+  palette?: SanityImagePalette
+  lqip?: string
+  blurHash?: string
+  hasAlpha?: boolean
+  isOpaque?: boolean
 }
 
 export type Code = {
@@ -323,17 +404,22 @@ export type AllSanitySchemaTypes =
   | SanityFileAsset
   | Geopoint
   | Blog
-  | SanityImageCrop
-  | SanityImageHotspot
-  | SanityImageAsset
-  | SanityAssetSourceData
-  | SanityImageMetadata
   | Slug
   | Works
   | Project
   | LinkWithIcon
   | LinkWithDescription
   | Home
+  | MetaTag
+  | MetaAttribute
+  | SeoMetaFields
+  | Twitter
+  | OpenGraph
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
   | Code
   | IconPicker
 export declare const internalGroqTypeReferenceTo: unique symbol
@@ -374,6 +460,7 @@ export type HomeQueryResult = {
         _key: string
       }
   >
+  seo?: SeoMetaFields
 } | null
 // Variable: worksQuery
 // Query: *[_type == "works"][0]
@@ -470,3 +557,86 @@ export type BlogsQueryResult = Array<{
   >
   tags?: Array<string>
 }>
+// Variable: blogQuery
+// Query: *[_type == "blog" && slug.current == $slug]{    ...,    "content":content[]{      ...,      "asset":asset->    }  }[0]
+export type BlogQueryResult = {
+  _id: string
+  _type: "blog"
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  slug?: Slug
+  content: Array<
+    | {
+        children?: Array<
+          | ({
+              _key: string
+            } & LinkWithIcon)
+          | {
+              marks?: Array<string>
+              text?: string
+              _type: "span"
+              _key: string
+            }
+        >
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal"
+        listItem?: "bullet" | "number"
+        markDefs?: Array<{
+          href?: string
+          _type: "link"
+          _key: string
+        }>
+        level?: number
+        _type: "block"
+        _key: string
+        asset: null
+      }
+    | {
+        _key: string
+        _type: "code"
+        language?: string
+        filename?: string
+        code?: string
+        highlightedLines?: Array<number>
+        asset: null
+      }
+    | {
+        asset: {
+          _id: string
+          _type: "sanity.imageAsset"
+          _createdAt: string
+          _updatedAt: string
+          _rev: string
+          originalFilename?: string
+          label?: string
+          title?: string
+          description?: string
+          altText?: string
+          sha1hash?: string
+          extension?: string
+          mimeType?: string
+          size?: number
+          assetId?: string
+          uploadId?: string
+          path?: string
+          url?: string
+          metadata?: SanityImageMetadata
+          source?: SanityAssetSourceData
+        } | null
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: "image"
+        _key: string
+      }
+    | {
+        _key: string
+        _type: "linkWithDescription"
+        title?: string
+        description?: string
+        url?: string
+        asset: null
+      }
+  > | null
+  tags?: Array<string>
+} | null

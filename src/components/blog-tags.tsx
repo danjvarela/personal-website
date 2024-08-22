@@ -1,10 +1,10 @@
 import Link from "next/link"
 import { isEmpty } from "lodash"
-import { BlogsQueryResult } from "sanity.types"
+import { BlogQueryResult } from "sanity.types"
 import { Badge } from "./ui/badge"
 
 type Props = {
-  blog: BlogsQueryResult[number]
+  blog: BlogQueryResult
 }
 
 export function BlogTags({ blog }: Props) {
@@ -14,9 +14,9 @@ export function BlogTags({ blog }: Props) {
     return `/blogs?${s.toString()}`
   }
 
-  if (isEmpty(blog.tags)) return null
+  if (isEmpty(blog?.tags)) return null
 
-  return blog.tags!.map((tag) => (
+  return blog!.tags!.map((tag) => (
     <Link href={generateTagUrl(tag)} key={tag}>
       <Badge variant="secondary">{tag}</Badge>
     </Link>
