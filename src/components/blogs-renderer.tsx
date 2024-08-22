@@ -18,15 +18,5 @@ export function BlogsRenderer({ blogs }: Props) {
     return blogs.filter((blog) => blog.tags?.includes(tag))
   }, [blogs, tag])
 
-  return filteredBlogs.map((blog) => (
-    <Blog
-      key={blog._id}
-      blog={{
-        title: blog.title || "",
-        slug: blog.slug?.current || "",
-        createdAt: blog._createdAt,
-        tags: blog.tags,
-      }}
-    />
-  ))
+  return filteredBlogs.map((blog) => <Blog key={blog._id} blog={blog} />)
 }

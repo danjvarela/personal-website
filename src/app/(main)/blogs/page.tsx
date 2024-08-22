@@ -2,8 +2,8 @@ import { sanityFetch } from "@/sanity/lib/client"
 import { blogsQuery } from "@/sanity/lib/queries"
 import { BlogsQueryResult } from "sanity.types"
 import { H3 } from "@/components/ui/typography"
-import { BlogTag } from "@/components/blog-tag"
 import { BlogsRenderer } from "@/components/blogs-renderer"
+import { CurrentSelectedBlogTag } from "@/components/current-selected-blog-tag"
 
 export default async function BlogsPage({}) {
   const blogs = await sanityFetch<BlogsQueryResult>({ query: blogsQuery })
@@ -11,7 +11,7 @@ export default async function BlogsPage({}) {
   return (
     <main className="px-2 py-8">
       <H3>&#9997; Blogs</H3>
-      <BlogTag />
+      <CurrentSelectedBlogTag />
       <BlogsRenderer blogs={blogs} />
     </main>
   )

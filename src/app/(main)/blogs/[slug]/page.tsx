@@ -6,6 +6,7 @@ import { BlogsQueryResult } from "sanity.types"
 import { IconAsText } from "@/components/ui/icon-as-text"
 import { Link } from "@/components/ui/link"
 import { H1, P } from "@/components/ui/typography"
+import { BlogTags } from "@/components/blog-tags"
 import { PortableText } from "@/components/portable-text"
 
 type BlogQueryResult = BlogsQueryResult[number]
@@ -39,6 +40,9 @@ export default async function BlogPage({ params }: Props) {
       <P className="mt-2 text-muted-foreground">
         Published {formattedDate} ({formattedFromNow} ago)
       </P>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <BlogTags blog={blog} />
+      </div>
       {blog.content && <PortableText value={blog.content} enableHeaderLinks />}
     </main>
   )

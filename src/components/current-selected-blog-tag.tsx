@@ -6,7 +6,7 @@ import { P } from "@/components/ui/typography"
 import { Badge } from "./ui/badge"
 import { IconAsText } from "./ui/icon-as-text"
 
-export function BlogTag() {
+export function CurrentSelectedBlogTag() {
   const s = useSearchParams()
   const router = useRouter()
   const tag = s.get("tag")
