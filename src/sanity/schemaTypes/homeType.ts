@@ -23,5 +23,10 @@ export const homeType = defineType({
         defineArrayMember({ type: "linkWithDescription" }),
       ],
     }),
+    defineField({
+      title: "Seo",
+      name: "seo",
+      type: "seoMetaFields",
+    }),
   ],
 })

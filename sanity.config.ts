@@ -7,6 +7,7 @@ import { codeInput } from "@sanity/code-input"
 import { visionTool } from "@sanity/vision"
 import { defineConfig } from "sanity"
 import { iconPicker } from "sanity-plugin-icon-picker"
+import { seoMetaFields } from "sanity-plugin-seo"
 import { structureTool } from "sanity/structure"
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { apiVersion, dataset, projectId } from "./src/sanity/env"
@@ -26,5 +27,6 @@ export default defineConfig({
     visionTool({ defaultApiVersion: apiVersion }),
     iconPicker(),
     codeInput(),
+    seoMetaFields(),
   ],
 })
