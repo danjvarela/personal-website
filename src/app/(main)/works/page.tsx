@@ -1,10 +1,12 @@
 import { sanityFetch } from "@/sanity/lib/client"
 import { worksQuery } from "@/sanity/lib/queries"
-import { SanityDocument } from "next-sanity"
+import { WorksQueryResult } from "sanity.types"
 import { PortableText } from "@/components/portable-text"
 
 export default async function WorksPage() {
-  const worksContent = await sanityFetch<SanityDocument>({ query: worksQuery })
+  const worksContent = await sanityFetch<WorksQueryResult>({
+    query: worksQuery,
+  })
 
   return (
     <main className="px-2 py-8">
