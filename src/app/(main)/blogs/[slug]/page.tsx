@@ -39,7 +39,7 @@ export default async function BlogPage({ params }: Props) {
       <P className="mt-2 text-muted-foreground">
         Published {formattedDate} ({formattedFromNow} ago)
       </P>
-      {blog.content && <PortableText value={blog.content} />}
+      {blog.content && <PortableText value={blog.content} enableHeaderLinks />}
     </main>
   )
 }

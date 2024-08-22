@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ThemeProvider attribute="class">
+    <ThemeProvider attribute="class" defaultTheme="theme">
       <Toaster />
       <div className="mx-auto w-full max-w-2xl">
         <Header />
