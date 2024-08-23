@@ -37,6 +37,23 @@ export const blogType = defineType({
         defineArrayMember({ type: "linkWithDescription" }),
         defineArrayMember({
           type: "image",
+          fields: [
+            defineField({
+              type: "string",
+              name: "title",
+              title: "Title",
+            }),
+            defineField({
+              type: "string",
+              name: "description",
+              title: "Description",
+            }),
+            defineField({
+              type: "string",
+              name: "altText",
+              title: "Alt Text",
+            }),
+          ],
         }),
         defineArrayMember({
           type: "code",

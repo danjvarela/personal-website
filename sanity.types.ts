@@ -122,12 +122,6 @@ export type Blog = {
   tags?: Array<string>
 }
 
-export type Slug = {
-  _type: "slug"
-  current?: string
-  source?: string
-}
-
 export type Works = {
   _id: string
   _type: "works"
@@ -243,6 +237,21 @@ export type Home = {
       } & LinkWithDescription)
   >
   seo?: SeoMetaFields
+}
+
+export type MediaTag = {
+  _id: string
+  _type: "media.tag"
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: Slug
+}
+
+export type Slug = {
+  _type: "slug"
+  current?: string
+  source?: string
 }
 
 export type MetaTag = {
@@ -404,12 +413,13 @@ export type AllSanitySchemaTypes =
   | SanityFileAsset
   | Geopoint
   | Blog
-  | Slug
   | Works
   | Project
   | LinkWithIcon
   | LinkWithDescription
   | Home
+  | MediaTag
+  | Slug
   | MetaTag
   | MetaAttribute
   | SeoMetaFields
@@ -425,14 +435,9 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./src/sanity/lib/queries.ts
 // Variable: homeQuery
-// Query: *[_type == "home"][0]
+// Query: *[_type == "home"]{  content,  seo}[0]
 export type HomeQueryResult = {
-  _id: string
-  _type: "home"
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  content?: Array<
+  content: Array<
     | ({
         _key: string
       } & LinkWithDescription)
@@ -459,8 +464,8 @@ export type HomeQueryResult = {
         _type: "block"
         _key: string
       }
-  >
-  seo?: SeoMetaFields
+  > | null
+  seo: SeoMetaFields | null
 } | null
 // Variable: worksQuery
 // Query: *[_type == "works"][0]
@@ -558,7 +563,7 @@ export type BlogsQueryResult = Array<{
   tags?: Array<string>
 }>
 // Variable: blogQuery
-// Query: *[_type == "blog" && slug.current == $slug]{    ...,    "content":content[]{      ...,      "asset":asset->    }  }[0]
+// Query: *[_type == "blog" && slug.current == $slug]{    ...,    "content":content[]{      ...,      "asset":asset->{        ...,        altText,        _ref,        _type,        description,        "tags": opt.media.tags[]->name.current,        title      }    }  }[0]
 export type BlogQueryResult = {
   _id: string
   _type: "blog"
@@ -610,9 +615,9 @@ export type BlogQueryResult = {
           _rev: string
           originalFilename?: string
           label?: string
-          title?: string
-          description?: string
-          altText?: string
+          title: string | null
+          description: string | null
+          altText: string | null
           sha1hash?: string
           extension?: string
           mimeType?: string
@@ -623,6 +628,8 @@ export type BlogQueryResult = {
           url?: string
           metadata?: SanityImageMetadata
           source?: SanityAssetSourceData
+          _ref: null
+          tags: null
         } | null
         hotspot?: SanityImageHotspot
         crop?: SanityImageCrop

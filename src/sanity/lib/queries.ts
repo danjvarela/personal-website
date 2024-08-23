@@ -3,7 +3,10 @@ import { groq } from "next-sanity"
 /**
  * get home page content
  */
-export const homeQuery = groq`*[_type == "home"][0]`
+export const homeQuery = groq`*[_type == "home"]{
+  content,
+  seo
+}[0]`
 
 /**
  * get works page content
@@ -16,7 +19,18 @@ export const blogQuery = groq`*[_type == "blog" && slug.current == $slug]{
     ...,
     "content":content[]{
       ...,
-      "asset":asset->
+      title,
+      description,
+      altText,
+      "asset":asset->{
+        ...,
+        altText,
+        _ref,
+        _type,
+        description,
+        "tags": opt.media.tags[]->name.current,
+        title
+      }
     }
   }[0]
 `

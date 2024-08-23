@@ -4,8 +4,19 @@ import {
   PortableText as SanityPortableText,
   PortableTextProps as SanityPortableTextProps,
 } from "next-sanity"
+import { cn } from "@/lib/utils"
 import { Link } from "@/components/ui/link"
-import { Code, H1, H2, H3, H4, Ol, P, Ul } from "@/components/ui/typography"
+import {
+  Code,
+  H1,
+  H2,
+  H3,
+  H4,
+  Ol,
+  P,
+  typographyVariants,
+  Ul,
+} from "@/components/ui/typography"
 import { CardLink } from "@/components/card-link"
 import { Project } from "../project"
 import { CodeBlock } from "./code-block"
@@ -30,24 +41,36 @@ export function PortableText({
           ),
           linkWithIcon: (props) => <LinkWithIcon {...props} />,
           project: ({ value }) => <Project project={value} />,
-          image: ({ value }) => (
-            <Image
-              src={urlFor(value)
-                .auto("format")
-                .width(800)
-                .height(500)
-                .bg("f1f5f9")
-                .quality(40)
-                .fit("fillmax")
-                .url()}
-              alt=""
-              sizes="(max-width: 800px) 100vw, 800px"
-              width={800}
-              height={500}
-              placeholder="blur"
-              blurDataURL={value.asset.metadata.lqip}
-            />
-          ),
+          image: ({ value }) => {
+            return (
+              <figure>
+                <Image
+                  src={urlFor(value)
+                    .auto("format")
+                    .width(800)
+                    .height(500)
+                    .bg("f1f5f9")
+                    .quality(40)
+                    .fit("fillmax")
+                    .url()}
+                  alt={value.altText || value.asset.altText || ""}
+                  sizes="(max-width: 800px) 100vw, 800px"
+                  width={800}
+                  height={500}
+                  placeholder="blur"
+                  blurDataURL={value.asset.metadata.lqip}
+                />
+                <figcaption
+                  className={cn(
+                    typographyVariants({ as: "muted" }),
+                    "text-center italic"
+                  )}
+                >
+                  {value.description || value.asset.description}
+                </figcaption>
+              </figure>
+            )
+          },
           code: ({ value }) => <CodeBlock value={value} />,
         },
         block: {
