@@ -1,7 +1,11 @@
 import { Metadata } from "next"
 import { sanityFetch } from "@/sanity/lib/client"
 import { seoQuery, slugSpecificSeoQuery } from "@/sanity/lib/queries"
-import { SeoQueryResult, SlugSpecificSeoQueryResult } from "sanity.types"
+import {
+  SeoMetaFields,
+  SeoQueryResult,
+  SlugSpecificSeoQueryResult,
+} from "sanity.types"
 import { defaultMetadata } from "./constants"
 
 export function metadataGeneratorFor(page: string) {
@@ -10,6 +14,20 @@ export function metadataGeneratorFor(page: string) {
   }: {
     params: { slug: string }
   }): Promise<Metadata> {
+    function getMetadata(seo: SeoMetaFields): Metadata {
+      return {
+        title: seo?.metaTitle || defaultMetadata.title,
+        description: seo?.metaDescription || defaultMetadata.description,
+        keywords: seo?.seoKeywords || defaultMetadata.keywords,
+        robots: {
+          follow: seo.nofollowAttributes,
+          index: seo.nofollowAttributes,
+        },
+        twitter: seo.twitter,
+        openGraph: seo.openGraph,
+      }
+    }
+
     if (params.slug) {
       const doc = await sanityFetch<SlugSpecificSeoQueryResult>({
         query: slugSpecificSeoQuery,
@@ -20,19 +38,7 @@ export function metadataGeneratorFor(page: string) {
         return defaultMetadata
       }
 
-      const { seo } = doc
-
-      return {
-        title: seo?.metaTitle || defaultMetadata.title,
-        description: seo?.metaDescription || defaultMetadata.description,
-        keywords: seo?.seoKeywords || defaultMetadata.keywords,
-        robots: {
-          follow: seo.nofollowAttributes,
-          index: seo.nofollowAttributes,
-        },
-        twitter: seo.twitter,
-        openGraph: seo.openGraph,
-      }
+      return getMetadata(doc.seo)
     } else {
       const doc = await sanityFetch<SeoQueryResult>({
         query: seoQuery,
@@ -43,19 +49,7 @@ export function metadataGeneratorFor(page: string) {
         return defaultMetadata
       }
 
-      const { seo } = doc
-
-      return {
-        title: seo?.metaTitle || defaultMetadata.title,
-        description: seo?.metaDescription || defaultMetadata.description,
-        keywords: seo?.seoKeywords || defaultMetadata.keywords,
-        robots: {
-          follow: seo.nofollowAttributes,
-          index: seo.nofollowAttributes,
-        },
-        twitter: seo.twitter,
-        openGraph: seo.openGraph,
-      }
+      return getMetadata(doc.seo)
     }
   }
 }

@@ -5,6 +5,7 @@ import { homeType } from "./homeType"
 import { linkWithDescriptionType } from "./linkWithDescriptionType"
 import { linkWithIconType } from "./linkWithIconType"
 import { projectType } from "./projectType"
+import { settingsType } from "./settingsType"
 import { worksType } from "./worksType"
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -16,5 +17,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     worksType,
     blogType,
     blogsType,
+    settingsType,
   ],
 }

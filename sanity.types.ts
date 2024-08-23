@@ -68,6 +68,34 @@ export type Geopoint = {
   alt?: number
 }
 
+export type Settings = {
+  _id: string
+  _type: "settings"
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  favicon?: {
+    asset?: {
+      _ref: string
+      _type: "reference"
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: "image"
+  }
+}
+
+export type Blogs = {
+  _id: string
+  _type: "blogs"
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  seo?: SeoMetaFields
+}
+
 export type Blog = {
   _id: string
   _type: "blog"
@@ -417,6 +445,8 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | Settings
+  | Blogs
   | Blog
   | Works
   | Project
@@ -688,3 +718,36 @@ export type SlugSpecificSeoQueryResult =
       seo: SeoMetaFields | null
     }
   | null
+// Variable: settingsQuery
+// Query: *[_type == "settings"]{  ...,  favicon{    asset->  }}[0]
+export type SettingsQueryResult = {
+  _id: string
+  _type: "settings"
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  favicon: {
+    asset: {
+      _id: string
+      _type: "sanity.imageAsset"
+      _createdAt: string
+      _updatedAt: string
+      _rev: string
+      originalFilename?: string
+      label?: string
+      title?: string
+      description?: string
+      altText?: string
+      sha1hash?: string
+      extension?: string
+      mimeType?: string
+      size?: number
+      assetId?: string
+      uploadId?: string
+      path?: string
+      url?: string
+      metadata?: SanityImageMetadata
+      source?: SanityAssetSourceData
+    } | null
+  } | null
+} | null

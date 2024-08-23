@@ -38,3 +38,10 @@ export const blogQuery = groq`*[_type == "blog" && slug.current == $slug]{
 export const seoQuery = groq`*[_type == $type]{seo}[0]`
 
 export const slugSpecificSeoQuery = groq`*[_type == $type && slug.current == $slug]{seo}[0]`
+
+export const settingsQuery = groq`*[_type == "settings"]{
+  ...,
+  favicon{
+    asset->
+  }
+}[0]`
