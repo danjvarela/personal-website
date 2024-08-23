@@ -1,4 +1,5 @@
 import { format, formatDistanceToNow } from "date-fns"
+import { isEmpty } from "lodash"
 import { BlogQueryResult } from "sanity.types"
 import { cn } from "@/lib/utils"
 import { H4, typographyVariants } from "@/components/ui/typography"
@@ -27,9 +28,11 @@ export function Blog({ blog }: Props) {
         Published {formattedDate} ({formattedFromNow} ago)
       </p>
 
-      <div className="mt-4 flex flex-wrap gap-2">
-        <BlogTags blog={blog} />
-      </div>
+      {!isEmpty(blog.tags) && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          <BlogTags blog={blog} />
+        </div>
+      )}
     </div>
   )
 }
