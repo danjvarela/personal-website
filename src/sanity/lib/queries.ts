@@ -34,3 +34,7 @@ export const blogQuery = groq`*[_type == "blog" && slug.current == $slug]{
     }
   }[0]
 `
+
+export const seoQuery = groq`*[_type == $type]{seo}[0]`
+
+export const slugSpecificSeoQuery = groq`*[_type == $type && slug.current == $slug]{seo}[0]`

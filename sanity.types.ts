@@ -112,6 +112,9 @@ export type Blog = {
         }
         hotspot?: SanityImageHotspot
         crop?: SanityImageCrop
+        title?: string
+        description?: string
+        altText?: string
         _type: "image"
         _key: string
       }
@@ -120,6 +123,7 @@ export type Blog = {
       } & Code)
   >
   tags?: Array<string>
+  seo?: SeoMetaFields
 }
 
 export type Works = {
@@ -159,6 +163,7 @@ export type Works = {
         _key: string
       } & Project)
   >
+  seo?: SeoMetaFields
 }
 
 export type Project = {
@@ -506,6 +511,7 @@ export type WorksQueryResult = {
         _key: string
       }
   >
+  seo?: SeoMetaFields
 } | null
 // Variable: blogsQuery
 // Query: *[_type == "blog"]
@@ -556,14 +562,18 @@ export type BlogsQueryResult = Array<{
         }
         hotspot?: SanityImageHotspot
         crop?: SanityImageCrop
+        title?: string
+        description?: string
+        altText?: string
         _type: "image"
         _key: string
       }
   >
   tags?: Array<string>
+  seo?: SeoMetaFields
 }>
 // Variable: blogQuery
-// Query: *[_type == "blog" && slug.current == $slug]{    ...,    "content":content[]{      ...,      "asset":asset->{        ...,        altText,        _ref,        _type,        description,        "tags": opt.media.tags[]->name.current,        title      }    }  }[0]
+// Query: *[_type == "blog" && slug.current == $slug]{    ...,    "content":content[]{      ...,      title,      description,      altText,      "asset":asset->{        ...,        altText,        _ref,        _type,        description,        "tags": opt.media.tags[]->name.current,        title      }    }  }[0]
 export type BlogQueryResult = {
   _id: string
   _type: "blog"
@@ -595,6 +605,9 @@ export type BlogQueryResult = {
         level?: number
         _type: "block"
         _key: string
+        title: null
+        description: null
+        altText: null
         asset: null
       }
     | {
@@ -604,6 +617,9 @@ export type BlogQueryResult = {
         filename?: string
         code?: string
         highlightedLines?: Array<number>
+        title: null
+        description: null
+        altText: null
         asset: null
       }
     | {
@@ -633,17 +649,42 @@ export type BlogQueryResult = {
         } | null
         hotspot?: SanityImageHotspot
         crop?: SanityImageCrop
+        title: string | null
+        description: string | null
+        altText: string | null
         _type: "image"
         _key: string
       }
     | {
         _key: string
         _type: "linkWithDescription"
-        title?: string
-        description?: string
+        title: string | null
+        description: string | null
         url?: string
+        altText: null
         asset: null
       }
   > | null
   tags?: Array<string>
+  seo?: SeoMetaFields
 } | null
+// Variable: seoQuery
+// Query: *[_type == $type]{seo}[0]
+export type SeoQueryResult =
+  | {
+      seo: null
+    }
+  | {
+      seo: SeoMetaFields | null
+    }
+  | null
+// Variable: slugSpecificSeoQuery
+// Query: *[_type == $type && slug.current == $slug]{seo}[0]
+export type SlugSpecificSeoQueryResult =
+  | {
+      seo: null
+    }
+  | {
+      seo: SeoMetaFields | null
+    }
+  | null

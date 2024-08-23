@@ -24,5 +24,10 @@ export const worksType = defineType({
         defineArrayMember({ type: "project" }),
       ],
     }),
+    defineField({
+      title: "Seo",
+      name: "seo",
+      type: "seoMetaFields",
+    }),
   ],
 })

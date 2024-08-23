@@ -70,5 +70,10 @@ export const blogType = defineType({
         }),
       ],
     }),
+    defineField({
+      title: "Seo",
+      name: "seo",
+      type: "seoMetaFields",
+    }),
   ],
 })
