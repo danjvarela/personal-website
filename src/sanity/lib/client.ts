@@ -41,6 +41,7 @@ export async function sanityFetch<QueryResponse>({
         token: env.SANITY_API_READ_TOKEN,
         perspective: "previewDrafts",
         stega: true,
+        useCdn: false,
       }
     : {}
 
