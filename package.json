@@ -48,6 +48,7 @@
     "sanity-plugin-icon-picker": "^3.3.0",
     "sanity-plugin-media": "^2.3.2",
     "sanity-plugin-seo": "^1.2.5",
+    "sanity-plugin-tags": "^2.0.2",
     "styled-components": "6",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",

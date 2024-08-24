@@ -63,12 +63,20 @@ export const blogType = defineType({
     defineField({
       title: "Tags",
       name: "tags",
-      type: "array",
-      of: [
-        defineArrayMember({
-          type: "string",
+      type: "tags",
+      options: {
+        onCreate: (value: string) => ({
+          label: value,
+          value: value.toLowerCase().replace(/\W/g, "-"),
         }),
-      ],
+        checkValid: (input: string, values: string) => {
+          return (
+            !!input &&
+            input.trim() === input &&
+            !values.includes(input.trim().toLowerCase().replace(/\W/g, "-"))
+          )
+        },
+      },
     }),
     defineField({
       title: "Seo",
@@ -76,7 +84,6 @@ export const blogType = defineType({
       type: "seoMetaFields",
     }),
   ],
-
   preview: {
     select: {
       title: "title",

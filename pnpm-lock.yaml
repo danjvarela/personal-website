@@ -116,6 +116,9 @@ dependencies:
   sanity-plugin-seo:
     specifier: ^1.2.5
     version: 1.2.5(@typescript-eslint/eslint-plugin@6.21.0)(@typescript-eslint/parser@6.21.0)(eslint-plugin-import@2.29.1)(eslint@8.0.0)(react-dom@18.2.0)(react-is@18.3.1)(react@18.2.0)(sanity@3.54.0)(styled-components@6.1.12)(typescript@5.5.4)
+  sanity-plugin-tags:
+    specifier: ^2.0.2
+    version: 2.0.2(@types/react@18.2.18)(react-dom@18.2.0)(react@18.2.0)(rxjs@7.8.1)(sanity@3.54.0)(styled-components@6.1.12)
   styled-components:
     specifier: '6'
     version: 6.1.12(react-dom@18.2.0)(react@18.2.0)
@@ -10189,6 +10192,27 @@ packages:
       - react-is
       - styled-components
       - typescript
+    dev: false
+
+  /sanity-plugin-tags@2.0.2(@types/react@18.2.18)(react-dom@18.2.0)(react@18.2.0)(rxjs@7.8.1)(sanity@3.54.0)(styled-components@6.1.12):
+    resolution: {integrity: sha512-8pvPUQslt5qbCwV86PsygV8ojAk8EdRNFxEZXbg3mPGcfpgW8xtT9M08o9MG7tggknW1NaFmG/fnNOifDx3hOQ==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: ^18
+      rxjs: ^7.8.0
+      sanity: ^3
+      styled-components: ^5.3.6 || ^6.0.0
+    dependencies:
+      '@sanity/incompatible-plugin': 1.0.4(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-select: 5.8.0(@types/react@18.2.18)(react-dom@18.2.0)(react@18.2.0)
+      rxjs: 7.8.1
+      sanity: 3.54.0(@types/node@20.4.6)(@types/react@18.2.18)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.12)
+      styled-components: 6.1.12(react-dom@18.2.0)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
     dev: false
 
   /sanity@3.54.0(@types/node@20.4.6)(@types/react@18.2.18)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.12):

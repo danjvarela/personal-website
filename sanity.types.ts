@@ -150,7 +150,11 @@ export type Blog = {
         _key: string
       } & Code)
   >
-  tags?: Array<string>
+  tags?: Array<
+    {
+      _key: string
+    } & Tag
+  >
   seo?: SeoMetaFields
 }
 
@@ -270,6 +274,18 @@ export type Home = {
       } & LinkWithDescription)
   >
   seo?: SeoMetaFields
+}
+
+export type Tags = Array<
+  {
+    _key: string
+  } & Tag
+>
+
+export type Tag = {
+  _type: "tag"
+  value?: string
+  label?: string
 }
 
 export type MediaTag = {
@@ -453,6 +469,8 @@ export type AllSanitySchemaTypes =
   | LinkWithIcon
   | LinkWithDescription
   | Home
+  | Tags
+  | Tag
   | MediaTag
   | Slug
   | MetaTag
@@ -599,7 +617,11 @@ export type BlogsQueryResult = Array<{
         _key: string
       }
   >
-  tags?: Array<string>
+  tags?: Array<
+    {
+      _key: string
+    } & Tag
+  >
   seo?: SeoMetaFields
 }>
 // Variable: blogQuery
@@ -695,7 +717,11 @@ export type BlogQueryResult = {
         asset: null
       }
   > | null
-  tags?: Array<string>
+  tags?: Array<
+    {
+      _key: string
+    } & Tag
+  >
   seo?: SeoMetaFields
 } | null
 // Variable: seoQuery

@@ -15,7 +15,7 @@ export function BlogsRenderer({ blogs }: Props) {
 
   const filteredBlogs = useMemo(() => {
     if (!tag) return blogs
-    return blogs.filter((blog) => blog.tags?.includes(tag))
+    return blogs.filter((blog) => blog.tags?.some((item) => item.value === tag))
   }, [blogs, tag])
 
   return filteredBlogs.map((blog) => (

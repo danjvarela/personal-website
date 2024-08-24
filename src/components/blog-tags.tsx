@@ -17,8 +17,8 @@ export function BlogTags({ blog }: Props) {
   if (isEmpty(blog?.tags)) return null
 
   return blog!.tags!.map((tag) => (
-    <Link href={generateTagUrl(tag)} key={tag}>
-      <Badge variant="secondary">{tag}</Badge>
+    <Link href={generateTagUrl(tag.value || "")} key={tag._key}>
+      <Badge variant="secondary">{tag.label}</Badge>
     </Link>
   ))
 }
