@@ -9,13 +9,18 @@ export const env = createEnv({
    */
   server: {
     RESEND_API_KEY: z.string().min(1),
+    SANITY_API_READ_TOKEN: z.string().min(1),
   },
   /*
    * Environment variables available on the client (and server).
    *
    * 💡 You'll get type errors if these are not prefixed with NEXT_PUBLIC_.
    */
-  client: {},
+  client: {
+    NEXT_PUBLIC_SANITY_API_VERSION: z.string().min(1),
+    NEXT_PUBLIC_SANITY_DATASET: z.string().min(1),
+    NEXT_PUBLIC_SANITY_PROJECT_ID: z.string().min(1),
+  },
   /*
    * Due to how Next.js bundles environment variables on Edge and Client,
    * we need to manually destructure them to make sure all are included in bundle.
@@ -24,5 +29,10 @@ export const env = createEnv({
    */
   runtimeEnv: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
+    NEXT_PUBLIC_SANITY_API_VERSION:
+      process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2024-08-18",
+    NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    SANITY_API_READ_TOKEN: process.env.SANITY_API_READ_TOKEN,
   },
 })
