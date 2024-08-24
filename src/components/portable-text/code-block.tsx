@@ -24,7 +24,7 @@ export function CodeBlock({ value }: { value: any }) {
   }
 
   return (
-    <div className="group/code-block relative overflow-hidden rounded-lg border p-1 hover:border-muted-foreground/50">
+    <div className="group/code-block relative mt-6 overflow-hidden rounded-lg border p-1 hover:border-muted-foreground/50">
       <div className="relative overflow-hidden rounded-lg">
         <div className="absolute right-1 top-1 flex items-center gap-2 transition-all md:opacity-0 md:group-hover/code-block:opacity-100">
           <p className="text-muted-foreground">{value.language}</p>
