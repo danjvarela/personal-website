@@ -24,10 +24,6 @@ export function CurrentSelectedBlogTag({ blogs }: Props) {
   }, [router])
 
   const resolvedTagLabel = useMemo(() => {
-    console.log(
-      "hello",
-      blogs.flatMap((blog) => blog.tags)
-    )
     return blogs
       ?.map((blog) => blog.tags)
       .flat()
