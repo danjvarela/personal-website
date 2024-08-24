@@ -43,7 +43,7 @@ export function PortableText({
           project: ({ value }) => <Project project={value} />,
           image: ({ value }) => {
             return (
-              <figure>
+              <figure className="mt-6">
                 <Image
                   src={urlFor(value)
                     .auto("format")
