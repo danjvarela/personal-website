@@ -48,7 +48,6 @@ export function PortableText({
                   src={urlFor(value)
                     .auto("format")
                     .width(800)
-                    .height(500)
                     .bg("f1f5f9")
                     .quality(40)
                     .fit("fillmax")
