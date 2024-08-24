@@ -76,4 +76,15 @@ export const blogType = defineType({
       type: "seoMetaFields",
     }),
   ],
+
+  preview: {
+    select: {
+      title: "title",
+    },
+    prepare: (selection) => {
+      return {
+        title: selection.title,
+      }
+    },
+  },
 })

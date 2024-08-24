@@ -30,4 +30,11 @@ export const worksType = defineType({
       type: "seoMetaFields",
     }),
   ],
+  preview: {
+    prepare: () => {
+      return {
+        title: "Works page",
+      }
+    },
+  },
 })

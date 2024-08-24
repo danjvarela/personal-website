@@ -11,4 +11,11 @@ export const blogsType = defineType({
       type: "seoMetaFields",
     }),
   ],
+  preview: {
+    prepare: () => {
+      return {
+        title: "Blogs page",
+      }
+    },
+  },
 })

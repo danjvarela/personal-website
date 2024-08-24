@@ -29,4 +29,11 @@ export const homeType = defineType({
       type: "seoMetaFields",
     }),
   ],
+  preview: {
+    prepare: () => {
+      return {
+        title: "Home page",
+      }
+    },
+  },
 })
