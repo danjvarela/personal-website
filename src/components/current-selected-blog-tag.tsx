@@ -4,7 +4,7 @@ import { useCallback, useMemo } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { LucideX } from "lucide-react"
 import { BlogsQueryResult } from "sanity.types"
-import { P } from "@/components/ui/typography"
+import { P, typographyVariants } from "@/components/ui/typography"
 import { Badge } from "./ui/badge"
 import { IconAsText } from "./ui/icon-as-text"
 
@@ -33,7 +33,7 @@ export function CurrentSelectedBlogTag({ blogs }: Props) {
   if (!tag) return null
 
   return (
-    <P>
+    <div className={typographyVariants({ as: "p" })}>
       <span className="mr-4">Tag:</span>
       <Badge>
         {resolvedTagLabel || tag}{" "}
@@ -41,6 +41,6 @@ export function CurrentSelectedBlogTag({ blogs }: Props) {
           <IconAsText icon={LucideX} />
         </button>
       </Badge>
-    </P>
+    </div>
   )
 }
