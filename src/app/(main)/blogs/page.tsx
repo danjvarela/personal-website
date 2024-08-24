@@ -14,7 +14,7 @@ export default async function BlogsPage({}) {
   return (
     <main className="px-2 py-8">
       <H3>&#9997; Blogs</H3>
-      <CurrentSelectedBlogTag />
+      <CurrentSelectedBlogTag blogs={blogs} />
       <BlogsRenderer blogs={blogs} />
     </main>
   )
