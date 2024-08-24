@@ -9,6 +9,7 @@ export const settingsType = defineType({
       title: "Favicon Image",
       name: "favicon",
       type: "image",
+      validation: (rule) => [rule.required()],
     }),
   ],
 })

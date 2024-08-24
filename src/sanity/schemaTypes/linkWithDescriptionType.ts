@@ -9,6 +9,9 @@ export const linkWithDescriptionType = defineType({
       title: "Title",
       name: "title",
       type: "string",
+      validation: (rule) => {
+        return [rule.required().min(1)]
+      },
     }),
     defineField({
       title: "Description",
@@ -19,6 +22,9 @@ export const linkWithDescriptionType = defineType({
       title: "URL",
       name: "url",
       type: "url",
+      validation: (rule) => {
+        return [rule.required()]
+      },
     }),
   ],
 })

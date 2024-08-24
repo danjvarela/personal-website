@@ -22,6 +22,9 @@ export const homeType = defineType({
         }),
         defineArrayMember({ type: "linkWithDescription" }),
       ],
+      validation: (rule) => {
+        return [rule.required()]
+      },
     }),
     defineField({
       title: "Seo",

@@ -9,11 +9,17 @@ export const projectType = defineType({
       title: "Title",
       name: "title",
       type: "string",
+      validation: (rule) => {
+        return [rule.required().min(1)]
+      },
     }),
     defineField({
       title: "Deployed Link",
       name: "deployedLink",
       type: "url",
+      validation: (rule) => {
+        return [rule.required()]
+      },
     }),
     defineField({
       title: "Github Link",

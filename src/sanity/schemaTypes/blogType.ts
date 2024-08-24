@@ -9,6 +9,9 @@ export const blogType = defineType({
       title: "Title",
       name: "title",
       type: "string",
+      validation: (rule) => {
+        return [rule.required().min(1)]
+      },
     }),
     defineField({
       title: "Slug",
@@ -17,11 +20,17 @@ export const blogType = defineType({
       options: {
         source: "title",
       },
+      validation: (rule) => {
+        return [rule.required()]
+      },
     }),
     defineField({
       title: "Content",
       name: "content",
       type: "array",
+      validation: (rule) => {
+        return [rule.required()]
+      },
       of: [
         defineArrayMember({
           type: "block",

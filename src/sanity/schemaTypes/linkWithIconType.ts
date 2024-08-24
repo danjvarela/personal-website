@@ -9,6 +9,9 @@ export const linkWithIconType = defineType({
       title: "Title",
       name: "title",
       type: "string",
+      validation: (rule) => {
+        return [rule.required().min(1)]
+      },
     }),
     defineField({
       title: "Icon",
@@ -18,11 +21,17 @@ export const linkWithIconType = defineType({
         outputFormat: "react",
         providers: ["si"],
       },
+      validation: (rule) => {
+        return [rule.required()]
+      },
     }),
     defineField({
       title: "URL",
       name: "url",
       type: "url",
+      validation: (rule) => {
+        return [rule.required()]
+      },
     }),
   ],
 })
