@@ -1,8 +1,8 @@
 import { sanityFetch } from "@/sanity/lib/client"
-import { blogQuery, blogsQuery } from "@/sanity/lib/queries"
+import { blogQuery } from "@/sanity/lib/queries"
 import { format, formatDistanceToNow } from "date-fns"
 import { ArrowLeft } from "lucide-react"
-import { BlogQueryResult, BlogsQueryResult } from "sanity.types"
+import { BlogQueryResult } from "sanity.types"
 import { IconAsText } from "@/components/ui/icon-as-text"
 import { Link } from "@/components/ui/link"
 import { H1, P } from "@/components/ui/typography"
@@ -11,14 +11,6 @@ import { PortableText } from "@/components/portable-text"
 
 type Props = {
   params: { slug: string }
-}
-
-export async function generateStaticParams() {
-  const blogs = await sanityFetch<BlogsQueryResult>({ query: blogsQuery })
-
-  return blogs.map((blog) => ({
-    slug: blog.slug?.current || "",
-  }))
 }
 
 export default async function BlogPage({ params }: Props) {

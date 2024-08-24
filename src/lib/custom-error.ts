@@ -1,7 +1,7 @@
 export class CustomError extends Error {
-  type: "resend"
+  type: string
 
-  constructor(type: "resend", message: string) {
+  constructor(type: string, message: string) {
     super()
     this.type = type
     this.message = message
