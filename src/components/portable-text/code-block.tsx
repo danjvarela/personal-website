@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { Check, Copy } from "lucide-react"
 import SyntaxHighlighter from "react-syntax-highlighter"
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs"
@@ -12,16 +12,13 @@ export function CodeBlock({ value }: { value: any }) {
   const [, copy] = useCopyToClipboard()
   const [copied, setCopied] = useState(false)
 
-  const handleCopy = () => {
-    copy(value.code)
-      .then(() => {
-        setCopied(true)
-        setTimeout(() => {
-          setCopied(false)
-        }, 2000)
-      })
-      .catch(() => {})
-  }
+  const handleCopy = useCallback(async () => {
+    await copy(value.code)
+    setCopied(true)
+    setTimeout(() => {
+      setCopied(false)
+    }, 2000)
+  }, [copy])
 
   return (
     <div className="group/code-block relative mt-6 overflow-hidden rounded-lg border p-1 hover:border-muted-foreground/50">
