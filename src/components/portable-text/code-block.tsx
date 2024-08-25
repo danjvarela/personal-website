@@ -18,7 +18,7 @@ export function CodeBlock({ value }: { value: any }) {
     setTimeout(() => {
       setCopied(false)
     }, 2000)
-  }, [copy])
+  }, [copy, value.code])
 
   return (
     <div className="group/code-block relative mt-6 overflow-hidden rounded-lg border p-1 hover:border-muted-foreground/50">

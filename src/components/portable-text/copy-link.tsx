@@ -21,7 +21,7 @@ export function CopyLink({ id }: Props) {
     setTimeout(() => {
       setCopied(false)
     }, 2000)
-  }, [id, copy])
+  }, [copy])
 
   return (
     <Link

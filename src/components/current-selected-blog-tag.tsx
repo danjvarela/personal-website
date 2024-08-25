@@ -13,15 +13,15 @@ type Props = {
 }
 
 export function CurrentSelectedBlogTag({ blogs }: Props) {
-  const s = useSearchParams()
+  const readonlySearchParams = useSearchParams()
   const router = useRouter()
-  const tag = s.get("tag")
+  const tag = readonlySearchParams.get("tag")
 
   const handleCloseTag = useCallback(() => {
-    const sMutable = new URLSearchParams(s.toString())
+    const sMutable = new URLSearchParams(readonlySearchParams.toString())
     sMutable.delete("tag")
     router.push(`/blogs?${sMutable.toString()}`)
-  }, [router])
+  }, [router, readonlySearchParams])
 
   const resolvedTagLabel = useMemo(() => {
     return blogs
