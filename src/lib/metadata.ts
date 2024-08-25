@@ -38,7 +38,13 @@ export function metadataGeneratorFor(page: string) {
         return defaultMetadata
       }
 
-      return getMetadata(doc.seo)
+      return {
+        ...getMetadata(doc.seo),
+        authors: {
+          name: "Dan Varela",
+          url: "https://github.com/danjvarela",
+        },
+      }
     } else {
       const doc = await sanityFetch<SeoQueryResult>({
         query: seoQuery,

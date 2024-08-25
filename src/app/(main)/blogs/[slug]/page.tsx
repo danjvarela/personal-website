@@ -3,6 +3,7 @@ import { blogQuery } from "@/sanity/lib/queries"
 import { format, formatDistanceToNow } from "date-fns"
 import { ArrowLeft } from "lucide-react"
 import { BlogQueryResult } from "sanity.types"
+import { metadataGeneratorFor } from "@/lib/metadata"
 import { IconAsText } from "@/components/ui/icon-as-text"
 import { Link } from "@/components/ui/link"
 import { H1, P } from "@/components/ui/typography"
@@ -13,6 +14,8 @@ import { PortableText } from "@/components/portable-text"
 type Props = {
   params: { slug: string }
 }
+
+export const generateMetadata = metadataGeneratorFor("blog")
 
 export default async function BlogPage({ params }: Props) {
   const blog = await sanityFetch<BlogQueryResult>({
