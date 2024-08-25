@@ -16,19 +16,27 @@ export default function RootLayout({
   return (
     <ThemeProvider attribute="class" defaultTheme="theme">
       {draftMode().isEnabled && (
-        <div className="fixed bottom-4 left-4 z-[999]">
+        <div className="fixed bottom-16 left-4 z-[999]">
           <DraftModeDisabler />
         </div>
       )}
       <Toaster />
-      <div className="mx-auto w-full max-w-2xl">
+
+      <div className="mx-auto w-full max-w-2xl" id="main-pane">
         <Header />
-        <div className="min-h-screen">{children}</div>
-        <div className="fixed bottom-4 right-4 md:hidden">
-          <ThemeSwitcher />
-        </div>
+        <div className="relative min-h-screen">{children}</div>
         <Footer />
       </div>
+
+      <div className="fixed bottom-4 right-4 md:hidden">
+        <ThemeSwitcher />
+      </div>
+
+      <div
+        className="fixed bottom-0 z-50 h-auto w-full max-w-[100vw]"
+        id="toc-container"
+      />
+
       {draftMode().isEnabled && <VisualEditing />}
     </ThemeProvider>
   )

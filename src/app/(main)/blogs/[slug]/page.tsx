@@ -6,6 +6,7 @@ import { BlogQueryResult } from "sanity.types"
 import { IconAsText } from "@/components/ui/icon-as-text"
 import { Link } from "@/components/ui/link"
 import { H1, P } from "@/components/ui/typography"
+import { BlogTableOfContents } from "@/components/blog-table-of-contents"
 import { BlogTags } from "@/components/blog-tags"
 import { PortableText } from "@/components/portable-text"
 
@@ -28,18 +29,23 @@ export default async function BlogPage({ params }: Props) {
   const formattedFromNow = formatDistanceToNow(publishedDate)
 
   return (
-    <main className="px-2 py-8">
-      <Link href="/blogs">
-        <IconAsText icon={ArrowLeft} /> View all blogs
-      </Link>
-      <H1>{blog.title}</H1>
-      <P className="mt-2 text-muted-foreground">
-        Published {formattedDate} ({formattedFromNow} ago)
-      </P>
-      <div className="mt-4 flex flex-wrap gap-2">
-        <BlogTags blog={blog} />
-      </div>
-      {blog.content && <PortableText value={blog.content} enableHeaderLinks />}
-    </main>
+    <>
+      <BlogTableOfContents blog={blog} />
+      <main className="px-2 py-8">
+        <Link href="/blogs">
+          <IconAsText icon={ArrowLeft} /> View all blogs
+        </Link>
+        <H1>{blog.title}</H1>
+        <P className="mt-2 text-muted-foreground">
+          Published {formattedDate} ({formattedFromNow} ago)
+        </P>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <BlogTags blog={blog} />
+        </div>
+        {blog.content && (
+          <PortableText value={blog.content} enableHeaderLinks />
+        )}
+      </main>
+    </>
   )
 }

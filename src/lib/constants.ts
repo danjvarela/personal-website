@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 
 export const headerHeight = 64
+export const mainSectionWidth = 320
 
 export const urls = {
   linkedIn: "https://www.linkedin.com/in/danmar-varela-8097a9242/",

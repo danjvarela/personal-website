@@ -1,6 +1,6 @@
 import { PortableTextBlockComponent } from "next-sanity"
 
-type PortableTextBlockValue =
+export type PortableTextBlockValue =
   React.ComponentProps<PortableTextBlockComponent>["value"]
 
 export function generateIdFromPortableTextBlockValue(
@@ -10,6 +10,7 @@ export function generateIdFromPortableTextBlockValue(
     .map((item) => item.text || "")
     .join(" ")
     .replace(/\s{1,}/g, "-")
+    .replace(/[^a-zA-Z0-9]/g, "-")
     .toLowerCase()
     .normalize("NFC")
 }
