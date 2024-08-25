@@ -32,6 +32,7 @@ export function metadataGeneratorFor(page: string) {
       const doc = await sanityFetch<SlugSpecificSeoQueryResult>({
         query: slugSpecificSeoQuery,
         params: { type: page, slug: params.slug },
+        tags: [page],
       })
 
       if (!doc || !doc?.seo) {
@@ -51,6 +52,7 @@ export function metadataGeneratorFor(page: string) {
       const doc = await sanityFetch<SeoQueryResult>({
         query: seoQuery,
         params: { type: page },
+        tags: [page],
       })
 
       if (!doc || !doc?.seo) {

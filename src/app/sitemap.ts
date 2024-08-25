@@ -12,6 +12,7 @@ export function resolveUrl(str: string) {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const allPages = await sanityFetch<AllPagesQueryResult>({
     query: allPagesQuery,
+    tags: ["home", "blog", "works", "blogs"],
   })
 
   return allPages.map((page) => {

@@ -11,6 +11,7 @@ export const env = createEnv({
     RESEND_API_KEY: z.string().min(1),
     SANITY_API_READ_TOKEN: z.string().min(1),
     VERCEL_PROJECT_PRODUCTION_URL: z.string().min(1),
+    SANITY_REVALIDATE_SECRET: z.string().min(1),
   },
   /*
    * Environment variables available on the client (and server).
@@ -36,5 +37,6 @@ export const env = createEnv({
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     SANITY_API_READ_TOKEN: process.env.SANITY_API_READ_TOKEN,
     VERCEL_PROJECT_PRODUCTION_URL: process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    SANITY_REVALIDATE_SECRET: process.env.SANITY_REVALIDATE_SECRET,
   },
 })

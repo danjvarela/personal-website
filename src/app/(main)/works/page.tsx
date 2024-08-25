@@ -9,6 +9,7 @@ export const generateMetadata = metadataGeneratorFor("works")
 export default async function WorksPage() {
   const worksContent = await sanityFetch<WorksQueryResult>({
     query: worksQuery,
+    tags: ["works"],
   })
 
   return (

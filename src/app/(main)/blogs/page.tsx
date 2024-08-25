@@ -9,7 +9,10 @@ import { CurrentSelectedBlogTag } from "@/components/current-selected-blog-tag"
 export const generateMetadata = metadataGeneratorFor("blogs")
 
 export default async function BlogsPage({}) {
-  const blogs = await sanityFetch<BlogsQueryResult>({ query: blogsQuery })
+  const blogs = await sanityFetch<BlogsQueryResult>({
+    query: blogsQuery,
+    tags: ["blogs"],
+  })
 
   return (
     <main className="px-4 py-8">

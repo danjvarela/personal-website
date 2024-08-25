@@ -10,7 +10,10 @@ import { PortableText } from "@/components/portable-text"
 export async function generateMetadata(): Promise<Metadata> {
   const d = Promise.all([
     metadataGeneratorFor("home")({ params: { slug: "" } }),
-    sanityFetch<SettingsQueryResult>({ query: settingsQuery }),
+    sanityFetch<SettingsQueryResult>({
+      query: settingsQuery,
+      tags: ["settings"],
+    }),
   ])
 
   const [metadata, settings] = await d
@@ -30,7 +33,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const homeContent = await sanityFetch<HomeQueryResult>({ query: homeQuery })
+  const homeContent = await sanityFetch<HomeQueryResult>({
+    query: homeQuery,
+    tags: ["home"],
+  })
 
   return (
     <main className="px-4 py-8">

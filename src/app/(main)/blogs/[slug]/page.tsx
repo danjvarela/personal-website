@@ -23,6 +23,7 @@ export default async function BlogPage({ params }: Props) {
     params: {
       slug: params.slug,
     },
+    tags: ["blog"],
   })
 
   if (!blog) return null
