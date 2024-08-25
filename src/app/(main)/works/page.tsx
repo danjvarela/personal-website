@@ -12,7 +12,7 @@ export default async function WorksPage() {
   })
 
   return (
-    <main className="px-2 py-8">
+    <main className="px-4 py-8">
       {worksContent?.content && <PortableText value={worksContent.content} />}
     </main>
   )

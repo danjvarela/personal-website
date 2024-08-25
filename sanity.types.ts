@@ -117,7 +117,7 @@ export type Blog = {
               _key: string
             } & LinkWithIcon)
         >
-        style?: "h2" | "h3" | "h4" | "normal" | "blockquote"
+        style?: "normal" | "h2" | "h3" | "h4" | "blockquote"
         listItem?: "bullet" | "number"
         markDefs?: Array<{
           href?: string
@@ -562,7 +562,7 @@ export type WorksQueryResult = {
   seo?: SeoMetaFields
 } | null
 // Variable: blogsQuery
-// Query: *[_type == "blog"]
+// Query: *[_type == "blog"] | order(_createdAt desc)
 export type BlogsQueryResult = Array<{
   _id: string
   _type: "blog"

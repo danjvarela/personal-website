@@ -31,7 +31,7 @@ export default async function BlogPage({ params }: Props) {
   return (
     <>
       <BlogTableOfContents blog={blog} />
-      <main className="px-2 py-8">
+      <main className="px-4 py-8">
         <Link href="/blogs">
           <IconAsText icon={ArrowLeft} /> View all blogs
         </Link>

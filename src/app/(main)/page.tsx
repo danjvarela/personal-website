@@ -7,7 +7,7 @@ export default async function Home() {
   const homeContent = await sanityFetch<HomeQueryResult>({ query: homeQuery })
 
   return (
-    <main className="px-2 py-8">
+    <main className="px-4 py-8">
       {homeContent?.content && <PortableText value={homeContent.content} />}
     </main>
   )

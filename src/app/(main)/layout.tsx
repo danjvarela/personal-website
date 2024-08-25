@@ -28,12 +28,12 @@ export default function RootLayout({
         <Footer />
       </div>
 
-      <div className="fixed bottom-4 right-4 md:hidden">
+      <div className="fixed bottom-4 right-4 z-50 md:hidden">
         <ThemeSwitcher />
       </div>
 
       <div
-        className="fixed bottom-0 z-50 h-auto w-full max-w-[100vw]"
+        className="fixed bottom-0 z-40 h-auto w-full max-w-[100vw]"
         id="toc-container"
       />
 
