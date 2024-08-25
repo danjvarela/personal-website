@@ -13,7 +13,7 @@ export const homeQuery = groq`*[_type == "home"]{
  */
 export const worksQuery = groq`*[_type == "works"][0]`
 
-export const blogsQuery = groq`*[_type == "blog"]`
+export const blogsQuery = groq`*[_type == "blog"] | order(_createdAt desc)`
 
 export const blogQuery = groq`*[_type == "blog" && slug.current == $slug]{
     ...,
