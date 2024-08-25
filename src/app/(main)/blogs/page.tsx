@@ -11,7 +11,7 @@ export const generateMetadata = metadataGeneratorFor("blogs")
 export default async function BlogsPage({}) {
   const blogs = await sanityFetch<BlogsQueryResult>({
     query: blogsQuery,
-    tags: ["blogs"],
+    tags: ["blogs", "blog"],
   })
 
   return (
