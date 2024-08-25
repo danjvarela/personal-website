@@ -45,3 +45,5 @@ export const settingsQuery = groq`*[_type == "settings"]{
     asset->
   }
 }[0]`
+
+export const allPagesQuery = groq`*[_type == "home" || _type == "blog" || _type == "blogs" || _type == "works"]`

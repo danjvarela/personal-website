@@ -777,3 +777,151 @@ export type SettingsQueryResult = {
     } | null
   } | null
 } | null
+// Variable: allPagesQuery
+// Query: *[_type == "home" || _type == "blog" || _type == "blogs" || _type == "works"]
+export type AllPagesQueryResult = Array<
+  | {
+      _id: string
+      _type: "blog"
+      _createdAt: string
+      _updatedAt: string
+      _rev: string
+      title?: string
+      slug?: Slug
+      content?: Array<
+        | ({
+            _key: string
+          } & Code)
+        | ({
+            _key: string
+          } & LinkWithDescription)
+        | {
+            children?: Array<
+              | ({
+                  _key: string
+                } & LinkWithIcon)
+              | {
+                  marks?: Array<string>
+                  text?: string
+                  _type: "span"
+                  _key: string
+                }
+            >
+            style?: "blockquote" | "h2" | "h3" | "h4" | "normal"
+            listItem?: "bullet" | "number"
+            markDefs?: Array<{
+              href?: string
+              _type: "link"
+              _key: string
+            }>
+            level?: number
+            _type: "block"
+            _key: string
+          }
+        | {
+            asset?: {
+              _ref: string
+              _type: "reference"
+              _weak?: boolean
+              [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+            }
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            title?: string
+            description?: string
+            altText?: string
+            _type: "image"
+            _key: string
+          }
+      >
+      tags?: Array<
+        {
+          _key: string
+        } & Tag
+      >
+      seo?: SeoMetaFields
+    }
+  | {
+      _id: string
+      _type: "blogs"
+      _createdAt: string
+      _updatedAt: string
+      _rev: string
+      seo?: SeoMetaFields
+    }
+  | {
+      _id: string
+      _type: "home"
+      _createdAt: string
+      _updatedAt: string
+      _rev: string
+      content?: Array<
+        | ({
+            _key: string
+          } & LinkWithDescription)
+        | {
+            children?: Array<
+              | ({
+                  _key: string
+                } & LinkWithIcon)
+              | {
+                  marks?: Array<string>
+                  text?: string
+                  _type: "span"
+                  _key: string
+                }
+            >
+            style?: "blockquote" | "h3" | "h4" | "normal"
+            listItem?: "bullet" | "number"
+            markDefs?: Array<{
+              href?: string
+              _type: "link"
+              _key: string
+            }>
+            level?: number
+            _type: "block"
+            _key: string
+          }
+      >
+      seo?: SeoMetaFields
+    }
+  | {
+      _id: string
+      _type: "works"
+      _createdAt: string
+      _updatedAt: string
+      _rev: string
+      content?: Array<
+        | ({
+            _key: string
+          } & LinkWithDescription)
+        | ({
+            _key: string
+          } & Project)
+        | {
+            children?: Array<
+              | ({
+                  _key: string
+                } & LinkWithIcon)
+              | {
+                  marks?: Array<string>
+                  text?: string
+                  _type: "span"
+                  _key: string
+                }
+            >
+            style?: "blockquote" | "h3" | "h4" | "normal"
+            listItem?: "bullet" | "number"
+            markDefs?: Array<{
+              href?: string
+              _type: "link"
+              _key: string
+            }>
+            level?: number
+            _type: "block"
+            _key: string
+          }
+      >
+      seo?: SeoMetaFields
+    }
+>
