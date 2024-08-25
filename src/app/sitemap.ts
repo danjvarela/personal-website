@@ -6,7 +6,7 @@ import { AllPagesQueryResult } from "sanity.types"
 import { match } from "ts-pattern"
 
 export function resolveUrl(str: string) {
-  return new URL(str, env.VERCEL_PROJECT_PRODUCTION_URL).toString()
+  return new URL(str, `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`).toString()
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
