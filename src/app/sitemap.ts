@@ -1,13 +1,9 @@
 import type { MetadataRoute } from "next"
-import { env } from "@/env.mjs"
 import { sanityFetch } from "@/sanity/lib/client"
 import { allPagesQuery } from "@/sanity/lib/queries"
 import { AllPagesQueryResult } from "sanity.types"
 import { match } from "ts-pattern"
-
-export function resolveUrl(str: string) {
-  return new URL(str, `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`).toString()
-}
+import { resolveUrl } from "@/lib/metadata"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const allPages = await sanityFetch<AllPagesQueryResult>({

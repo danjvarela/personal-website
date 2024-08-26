@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { env } from "@/env.mjs"
 import { sanityFetch } from "@/sanity/lib/client"
 import { seoQuery, slugSpecificSeoQuery } from "@/sanity/lib/queries"
 import {
@@ -7,6 +8,10 @@ import {
   SlugSpecificSeoQueryResult,
 } from "sanity.types"
 import { defaultMetadata } from "./constants"
+
+export function resolveUrl(str: string) {
+  return new URL(str, `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`).toString()
+}
 
 export function getMetadata(seo: SeoMetaFields): Metadata {
   return {
@@ -19,6 +24,7 @@ export function getMetadata(seo: SeoMetaFields): Metadata {
     },
     twitter: seo.twitter,
     openGraph: seo.openGraph,
+    metadataBase: new URL(resolveUrl("/")),
   }
 }
 
@@ -41,12 +47,14 @@ export function metadataGeneratorFor(page: string) {
 
       const metadata = {
         ...getMetadata(doc.seo),
+        alternates: {
+          canonical: resolveUrl(`${page}/${params.slug}`),
+        },
         authors: {
           name: "Dan Varela",
           url: "https://github.com/danjvarela",
         },
       }
-      console.log("metadata for slug", params.slug, metadata)
       return metadata
     } else {
       const doc = await sanityFetch<SeoQueryResult>({
@@ -59,9 +67,12 @@ export function metadataGeneratorFor(page: string) {
         return defaultMetadata
       }
 
-      const metadata = getMetadata(doc.seo)
-      console.log("metadata for", page, metadata)
-      return getMetadata(doc.seo)
+      return {
+        ...getMetadata(doc.seo),
+        alternates: {
+          canonical: resolveUrl(page),
+        },
+      }
     }
   }
 }
