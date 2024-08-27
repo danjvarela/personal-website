@@ -1,4 +1,5 @@
-import { PortableTextBlockComponent } from "next-sanity"
+import { PortableTextBlockComponent, toPlainText } from "next-sanity"
+import slugify from "slugify"
 
 export type PortableTextBlockValue =
   React.ComponentProps<PortableTextBlockComponent>["value"]
@@ -6,11 +7,10 @@ export type PortableTextBlockValue =
 export function generateIdFromPortableTextBlockValue(
   value: PortableTextBlockValue
 ) {
-  return value.children
-    .map((item) => item.text || "")
-    .join(" ")
-    .replace(/\s{1,}/g, "-")
-    .replace(/[^a-zA-Z0-9]/g, "-")
-    .toLowerCase()
-    .normalize("NFC")
+  return slugify(toPlainText(value), {
+    trim: true,
+    lower: true,
+    remove: /[^\w\s-]/,
+    replacement: "-",
+  })
 }
