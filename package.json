@@ -44,6 +44,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.52.2",
     "react-syntax-highlighter": "^15.5.0",
+    "reading-time-estimator": "^1.11.0",
     "resend": "^4.0.0",
     "sanity": "3",
     "sanity-plugin-icon-picker": "^3.3.0",

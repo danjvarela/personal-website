@@ -1,9 +1,12 @@
 import { format, formatDistanceToNow } from "date-fns"
 import { isEmpty } from "lodash"
+import { Dot } from "lucide-react"
 import { BlogQueryResult } from "sanity.types"
 import { cn } from "@/lib/utils"
 import { H4, typographyVariants } from "@/components/ui/typography"
+import { BlogStats } from "./blog-stats"
 import { BlogTags } from "./blog-tags"
+import { IconAsText } from "./ui/icon-as-text"
 import { Link } from "./ui/link"
 
 type Props = {
@@ -13,10 +16,6 @@ type Props = {
 export function Blog({ blog }: Props) {
   if (!blog) return null
 
-  const publishedDate = new Date(blog._createdAt)
-  const formattedDate = format(publishedDate, "MMMM dd, yyyy")
-  const formattedFromNow = formatDistanceToNow(publishedDate)
-
   return (
     <div className="group/blog-card relative mt-6 overflow-clip rounded-lg border p-4 transition-colors hover:border-muted-foreground/30">
       <H4 className="mt-0">
@@ -24,9 +23,8 @@ export function Blog({ blog }: Props) {
           {blog.title}
         </Link>
       </H4>
-      <p className={cn(typographyVariants({ as: "muted" }), "mt-0")}>
-        Published {formattedDate} ({formattedFromNow} ago)
-      </p>
+
+      <BlogStats blog={blog} className="xl:text-sm" />
 
       {!isEmpty(blog.tags) && (
         <div className="mt-4 flex flex-wrap gap-2">
