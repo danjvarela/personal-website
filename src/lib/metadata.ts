@@ -70,7 +70,7 @@ export function metadataGeneratorFor(page: string) {
       return {
         ...getMetadata(doc.seo),
         alternates: {
-          canonical: resolveUrl(page),
+          canonical: resolveUrl(page === "home" ? "" : page),
         },
       }
     }
