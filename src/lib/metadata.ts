@@ -7,13 +7,16 @@ import {
   SeoQueryResult,
   SlugSpecificSeoQueryResult,
 } from "sanity.types"
+import { match } from "ts-pattern"
 import { defaultMetadata } from "./constants"
 
 export function resolveUrl(str: string) {
   return new URL(str, `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`).toString()
 }
 
-export function getMetadata(seo: SeoMetaFields): Metadata {
+export function getMetadata(seo?: SeoMetaFields | null): Metadata {
+  if (!seo) return defaultMetadata
+
   return {
     title: seo?.metaTitle || defaultMetadata.title,
     description: seo?.metaDescription || defaultMetadata.description,
@@ -34,45 +37,45 @@ export function metadataGeneratorFor(page: string) {
   }: {
     params: { slug: string }
   }): Promise<Metadata> {
-    if (params.slug) {
-      const doc = await sanityFetch<SlugSpecificSeoQueryResult>({
-        query: slugSpecificSeoQuery,
-        params: { type: page, slug: params.slug },
-        tags: [page],
-      })
-
-      if (!doc || !doc?.seo) {
-        return defaultMetadata
-      }
-
-      const metadata = {
-        ...getMetadata(doc.seo),
-        alternates: {
-          canonical: resolveUrl(`${page}/${params.slug}`),
-        },
-        authors: {
-          name: "Dan Varela",
-          url: "https://github.com/danjvarela",
-        },
-      }
-      return metadata
-    } else {
+    if (page === "home") {
       const doc = await sanityFetch<SeoQueryResult>({
         query: seoQuery,
-        params: { type: page },
-        tags: [page],
+        params: { type: "home" },
+        tags: ["home"],
       })
 
-      if (!doc || !doc?.seo) {
-        return defaultMetadata
+      return {
+        ...getMetadata(doc?.seo),
+        alternates: { canonical: resolveUrl("/") },
       }
+    }
+
+    if (page === "blog" && params.slug) {
+      const doc = await sanityFetch<SlugSpecificSeoQueryResult>({
+        query: slugSpecificSeoQuery,
+        params: { type: "blog", slug: params.slug },
+        tags: ["blog"],
+      })
 
       return {
-        ...getMetadata(doc.seo),
+        ...getMetadata(doc?.seo),
         alternates: {
-          canonical: resolveUrl(page === "home" ? "" : page),
+          canonical: resolveUrl(`/blogs/${params.slug}`),
         },
       }
+    }
+
+    const doc = await sanityFetch<SeoQueryResult>({
+      query: seoQuery,
+      params: { type: page },
+      tags: [page],
+    })
+
+    return {
+      ...getMetadata(doc?.seo),
+      alternates: {
+        canonical: resolveUrl(page),
+      },
     }
   }
 }
