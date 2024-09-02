@@ -29,7 +29,10 @@ export const blogQuery = groq`*[_type == "blog" && slug.current == $slug]{
         _type,
         description,
         "tags": opt.media.tags[]->name.current,
-        title
+        title,
+        playbackId,
+        assetId,
+        filename,
       }
     }
   }[0]

@@ -11,6 +11,7 @@ import { visionTool } from "@sanity/vision"
 import { defineConfig } from "sanity"
 import { iconPicker } from "sanity-plugin-icon-picker"
 import { media } from "sanity-plugin-media"
+import { muxInput } from "sanity-plugin-mux-input"
 import { seoMetaFields } from "sanity-plugin-seo"
 import { tags } from "sanity-plugin-tags"
 import { structureTool } from "sanity/structure"
@@ -42,5 +43,6 @@ export default defineConfig({
         },
       },
     }),
+    muxInput(),
   ],
 })

@@ -22,6 +22,7 @@ import { Project } from "../project"
 import { CodeBlock } from "./code-block"
 import { HeadingWithLink } from "./heading-with-link"
 import { LinkWithIcon } from "./link-with-icon"
+import { MuxPlayer } from "./mux-player"
 
 export function PortableText({
   enableHeaderLinks = false,
@@ -71,6 +72,15 @@ export function PortableText({
             )
           },
           code: ({ value }) => <CodeBlock value={value} />,
+          "mux.video": ({ value }) => {
+            if (!value?.asset?.playbackId) return null
+            return (
+              <MuxPlayer
+                playbackId={value?.asset?.playbackId}
+                className="mt-6"
+              />
+            )
+          },
         },
         block: {
           normal: ({ children }) => <P>{children}</P>,
