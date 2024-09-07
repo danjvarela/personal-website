@@ -42,6 +42,9 @@ export function CodeBlock({ value }: { value: any }) {
           language={value.language}
           style={atomOneDark}
           showLineNumbers
+          customStyle={{
+            fontSize: "0.80rem",
+          }}
         >
           {value.code}
         </SyntaxHighlighter>
