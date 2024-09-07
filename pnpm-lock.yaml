@@ -44,6 +44,9 @@ dependencies:
   '@react-email/components':
     specifier: ^0.0.22
     version: 0.0.22(@types/react@18.2.18)(react-dom@18.2.0)(react@18.2.0)
+  '@sanity/client':
+    specifier: ^6.21.3
+    version: 6.21.3(debug@4.3.6)
   '@sanity/code-input':
     specifier: ^4.1.4
     version: 4.1.4(@babel/runtime@7.25.0)(@codemirror/lint@6.8.1)(@codemirror/theme-one-dark@6.1.2)(@lezer/common@1.2.1)(codemirror@6.0.1)(react-dom@18.2.0)(react-is@18.3.1)(react@18.2.0)(sanity@3.54.0)(styled-components@6.1.12)
