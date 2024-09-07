@@ -17,7 +17,7 @@ export async function sanityFetch<QueryResponse>({
   query,
   params = {},
   tags,
-  revalidate = 60,
+  revalidate = process.env.NODE_ENV === "development" ? 10 : 3600,
 }: {
   query: string
   params?: QueryParams
@@ -33,9 +33,7 @@ export async function sanityFetch<QueryResponse>({
     // if there is a tag supplied, cache indefinitely until revalidateTag is called
     if (tags?.length) return false
 
-    if (revalidate !== undefined) return revalidate
-
-    return process.env.NODE_ENV === "development" ? 10 : 3600
+    return revalidate
   })()
 
   const draftModeOpts: QueryOptions = isDraftMode
