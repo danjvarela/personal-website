@@ -5,8 +5,9 @@ import { Check, Copy } from "lucide-react"
 import SyntaxHighlighter from "react-syntax-highlighter"
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs"
 import { useCopyToClipboard } from "usehooks-ts"
-import { Button } from "../ui/button"
+import { cn } from "@/lib/utils"
 import { IconAsText } from "../ui/icon-as-text"
+import { typographyVariants } from "../ui/typography"
 
 export function CodeBlock({ value }: { value: any }) {
   const [, copy] = useCopyToClipboard()
@@ -22,18 +23,21 @@ export function CodeBlock({ value }: { value: any }) {
 
   return (
     <div className="group/code-block relative mt-6 overflow-hidden rounded-lg border p-1 hover:border-muted-foreground/50">
-      <div className="relative overflow-hidden rounded-lg">
-        <div className="absolute right-1 top-1 flex items-center gap-2 transition-all md:opacity-0 md:group-hover/code-block:opacity-100">
-          <p className="text-muted-foreground">{value.language}</p>
-          <Button
-            className="h-fit p-2 hover:border-muted-foreground/50"
-            variant="outline"
-            onClick={handleCopy}
-            disabled={copied}
-          >
-            <IconAsText icon={copied ? Check : Copy} />
-          </Button>
-        </div>
+      <div className="flex items-center justify-between gap-2 p-2">
+        <p className="text-xs text-muted-foreground">{value.language}</p>
+        <button
+          className={cn(typographyVariants({ as: "a" }), "text-xs")}
+          onClick={handleCopy}
+          disabled={copied}
+        >
+          Copy{" "}
+          <IconAsText
+            icon={copied ? Check : Copy}
+            className={cn(copied && "text-primary")}
+          />
+        </button>
+      </div>
+      <div className="overflow-hidden rounded-[inherit]">
         <SyntaxHighlighter
           language={value.language}
           style={atomOneDark}
