@@ -1,10 +1,9 @@
 import { sanityFetch } from "@/sanity/lib/client"
 import { blogsQuery } from "@/sanity/lib/queries"
-import { BlogsQueryResult } from "sanity.types"
+import { BlogsQueryResult } from "@/sanity/types"
 import { metadataGeneratorFor } from "@/lib/metadata"
 import { H3 } from "@/components/ui/typography"
-import { BlogsRenderer } from "@/components/blogs-renderer"
-import { CurrentSelectedBlogTag } from "@/components/current-selected-blog-tag"
+import { Blog } from "@/components/blog"
 
 export const generateMetadata = metadataGeneratorFor("blogs")
 
@@ -17,8 +16,9 @@ export default async function BlogsPage({}) {
   return (
     <main className="px-4 py-8">
       <H3>&#9997; Blogs</H3>
-      <CurrentSelectedBlogTag blogs={blogs} />
-      <BlogsRenderer blogs={blogs} />
+      {blogs.map((blog) => (
+        <Blog blog={blog} key={blog._id} />
+      ))}
     </main>
   )
 }

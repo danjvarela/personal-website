@@ -1,14 +1,14 @@
+import { BlogQueryResult, BlogsQueryResult } from "@/sanity/types"
 import { format, formatDistanceToNow } from "date-fns"
 import { Dot } from "lucide-react"
 import { PortableTextBlock, toPlainText } from "next-sanity"
 import { readingTime } from "reading-time-estimator"
-import { BlogQueryResult } from "sanity.types"
 import { cn } from "@/lib/utils"
 import { IconAsText } from "./ui/icon-as-text"
 import { typographyVariants } from "./ui/typography"
 
 type Props = {
-  blog: BlogQueryResult
+  blog: BlogsQueryResult[number] | NonNullable<BlogQueryResult>
   className?: string
 }
 

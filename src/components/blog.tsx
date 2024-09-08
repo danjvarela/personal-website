@@ -1,16 +1,12 @@
-import { format, formatDistanceToNow } from "date-fns"
+import { BlogsQueryResult } from "@/sanity/types"
 import { isEmpty } from "lodash"
-import { Dot } from "lucide-react"
-import { BlogQueryResult } from "sanity.types"
-import { cn } from "@/lib/utils"
-import { H4, typographyVariants } from "@/components/ui/typography"
+import { H4 } from "@/components/ui/typography"
+import { BlogCategories } from "./blog-categories"
 import { BlogStats } from "./blog-stats"
-import { BlogTags } from "./blog-tags"
-import { IconAsText } from "./ui/icon-as-text"
 import { Link } from "./ui/link"
 
 type Props = {
-  blog: BlogQueryResult
+  blog: BlogsQueryResult[number]
 }
 
 export function Blog({ blog }: Props) {
@@ -26,9 +22,9 @@ export function Blog({ blog }: Props) {
 
       <BlogStats blog={blog} className="xl:text-sm" />
 
-      {!isEmpty(blog.tags) && (
+      {!isEmpty(blog.categories) && (
         <div className="mt-4 flex flex-wrap gap-2">
-          <BlogTags blog={blog} />
+          <BlogCategories blog={blog} />
         </div>
       )}
     </div>

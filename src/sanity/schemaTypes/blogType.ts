@@ -73,22 +73,15 @@ export const blogType = defineType({
       ],
     }),
     defineField({
-      title: "Tags",
-      name: "tags",
-      type: "tags",
-      options: {
-        onCreate: (value: string) => ({
-          label: value,
-          value: value.toLowerCase().replace(/\W/g, "-"),
+      title: "Categories",
+      name: "categories",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: [{ type: "category" }],
         }),
-        checkValid: (input: string, values: string) => {
-          return (
-            !!input &&
-            input.trim() === input &&
-            !values.includes(input.trim().toLowerCase().replace(/\W/g, "-"))
-          )
-        },
-      },
+      ],
     }),
     defineField({
       title: "Seo",

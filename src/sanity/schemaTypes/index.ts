@@ -1,6 +1,7 @@
 import { type SchemaTypeDefinition } from "sanity"
 import { blogsType } from "./blogsType"
 import { blogType } from "./blogType"
+import { categoryType } from "./categoryType"
 import { homeType } from "./homeType"
 import { linkWithDescriptionType } from "./linkWithDescriptionType"
 import { linkWithIconType } from "./linkWithIconType"
@@ -18,5 +19,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     blogType,
     blogsType,
     settingsType,
+    categoryType,
   ],
 }

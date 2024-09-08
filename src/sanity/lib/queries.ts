@@ -13,10 +13,51 @@ export const homeQuery = groq`*[_type == "home"]{
  */
 export const worksQuery = groq`*[_type == "works"][0]`
 
-export const blogsQuery = groq`*[_type == "blog"] | order(_createdAt desc)`
+export const blogsQuery = groq`
+  *[_type == "blog"]{
+    "categories": categories[]->{
+      slug,
+      name
+    },
+    title,
+    content,
+    slug,
+    _createdAt,
+    _id
+  } | order(_createdAt desc)
+`
 
-export const blogQuery = groq`*[_type == "blog" && slug.current == $slug]{
-    ...,
+export const categoryBlogsQuery = groq`
+  *[_type == "blog" && count((categories[]->slug.current)[@ in [$slug]]) > 0]{
+    "categories": categories[]->{
+      slug,
+      name
+    },
+    title,
+    content,
+    slug,
+    _createdAt,
+    _id
+  } | order(_createdAt desc)
+`
+
+export const categoryQuery = groq`
+  *[_type == "category" && slug.current == $slug][0]{
+    slug,
+    name
+  }
+`
+
+export const blogQuery = groq`
+  *[_type == "blog" && slug.current == $slug]{
+    "categories": categories[]->{
+      slug,
+      name
+    },
+    title,
+    slug,
+    _createdAt,
+    _id,
     "content":content[]{
       ...,
       title,

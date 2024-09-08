@@ -68,6 +68,16 @@ export type Geopoint = {
   alt?: number
 }
 
+export type Category = {
+  _id: string
+  _type: "category"
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  slug?: Slug
+}
+
 export type Settings = {
   _id: string
   _type: "settings"
@@ -153,11 +163,13 @@ export type Blog = {
         _key: string
       } & MuxVideo)
   >
-  tags?: Array<
-    {
-      _key: string
-    } & Tag
-  >
+  categories?: Array<{
+    _ref: string
+    _type: "reference"
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: "category"
+  }>
   seo?: SeoMetaFields
 }
 
@@ -364,18 +376,6 @@ export type MuxTrack = {
   max_height?: number
 }
 
-export type Tags = Array<
-  {
-    _key: string
-  } & Tag
->
-
-export type Tag = {
-  _type: "tag"
-  value?: string
-  label?: string
-}
-
 export type MediaTag = {
   _id: string
   _type: "media.tag"
@@ -549,6 +549,7 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | Category
   | Settings
   | Blogs
   | Blog
@@ -564,8 +565,6 @@ export type AllSanitySchemaTypes =
   | MuxStaticRenditionFile
   | MuxPlaybackId
   | MuxTrack
-  | Tags
-  | Tag
   | MediaTag
   | Slug
   | MetaTag
@@ -657,16 +656,14 @@ export type WorksQueryResult = {
   seo?: SeoMetaFields
 } | null
 // Variable: blogsQuery
-// Query: *[_type == "blog"] | order(_createdAt desc)
+// Query: *[_type == "blog"]{    "categories": categories[]->{      slug,      name    },    title,    content,    slug,    _createdAt,    _id  } | order(_createdAt desc)
 export type BlogsQueryResult = Array<{
-  _id: string
-  _type: "blog"
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  slug?: Slug
-  content?: Array<
+  categories: Array<{
+    slug: Slug | null
+    name: string | null
+  }> | null
+  title: string | null
+  content: Array<
     | ({
         _key: string
       } & Code)
@@ -714,24 +711,89 @@ export type BlogsQueryResult = Array<{
         _type: "image"
         _key: string
       }
-  >
-  tags?: Array<
-    {
-      _key: string
-    } & Tag
-  >
-  seo?: SeoMetaFields
-}>
-// Variable: blogQuery
-// Query: *[_type == "blog" && slug.current == $slug]{    ...,    "content":content[]{      ...,      title,      description,      altText,      "asset":asset->{        ...,        altText,        _ref,        _type,        description,        "tags": opt.media.tags[]->name.current,        title,        playbackId,        assetId,        filename,      }    }  }[0]
-export type BlogQueryResult = {
-  _id: string
-  _type: "blog"
+  > | null
+  slug: Slug | null
   _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  slug?: Slug
+  _id: string
+}>
+// Variable: categoryBlogsQuery
+// Query: *[_type == "blog" && count((categories[]->slug.current)[@ in [$slug]]) > 0]{    "categories": categories[]->{      slug,      name    },    title,    content,    slug,    _createdAt,    _id  } | order(_createdAt desc)
+export type CategoryBlogsQueryResult = Array<{
+  categories: Array<{
+    slug: Slug | null
+    name: string | null
+  }> | null
+  title: string | null
+  content: Array<
+    | ({
+        _key: string
+      } & Code)
+    | ({
+        _key: string
+      } & LinkWithDescription)
+    | ({
+        _key: string
+      } & MuxVideo)
+    | {
+        children?: Array<
+          | ({
+              _key: string
+            } & LinkWithIcon)
+          | {
+              marks?: Array<string>
+              text?: string
+              _type: "span"
+              _key: string
+            }
+        >
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal"
+        listItem?: "bullet" | "number"
+        markDefs?: Array<{
+          href?: string
+          _type: "link"
+          _key: string
+        }>
+        level?: number
+        _type: "block"
+        _key: string
+      }
+    | {
+        asset?: {
+          _ref: string
+          _type: "reference"
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        title?: string
+        description?: string
+        altText?: string
+        _type: "image"
+        _key: string
+      }
+  > | null
+  slug: Slug | null
+  _createdAt: string
+  _id: string
+}>
+// Variable: categoryQuery
+// Query: *[_type == "category" && slug.current == $slug][0]{    slug,    name  }
+export type CategoryQueryResult = {
+  slug: Slug | null
+  name: string | null
+} | null
+// Variable: blogQuery
+// Query: *[_type == "blog" && slug.current == $slug]{    "categories": categories[]->{      slug,      name    },    title,    slug,    _createdAt,    _id,    "content":content[]{      ...,      title,      description,      altText,      "asset":asset->{        ...,        altText,        _ref,        _type,        description,        "tags": opt.media.tags[]->name.current,        title,        playbackId,        assetId,        filename,      }    }  }[0]
+export type BlogQueryResult = {
+  categories: Array<{
+    slug: Slug | null
+    name: string | null
+  }> | null
+  title: string | null
+  slug: Slug | null
+  _createdAt: string
+  _id: string
   content: Array<
     | {
         children?: Array<
@@ -825,12 +887,6 @@ export type BlogQueryResult = {
         altText: null
       }
   > | null
-  tags?: Array<
-    {
-      _key: string
-    } & Tag
-  >
-  seo?: SeoMetaFields
 } | null
 // Variable: seoQuery
 // Query: *[_type == $type]{seo}[0]
@@ -945,11 +1001,13 @@ export type AllPagesQueryResult = Array<
             _key: string
           }
       >
-      tags?: Array<
-        {
-          _key: string
-        } & Tag
-      >
+      categories?: Array<{
+        _ref: string
+        _type: "reference"
+        _weak?: boolean
+        _key: string
+        [internalGroqTypeReferenceTo]?: "category"
+      }>
       seo?: SeoMetaFields
     }
   | {

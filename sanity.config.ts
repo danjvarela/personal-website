@@ -13,7 +13,6 @@ import { iconPicker } from "sanity-plugin-icon-picker"
 import { media } from "sanity-plugin-media"
 import { muxInput } from "sanity-plugin-mux-input"
 import { seoMetaFields } from "sanity-plugin-seo"
-import { tags } from "sanity-plugin-tags"
 import { structureTool } from "sanity/structure"
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { schema } from "./src/sanity/schemaTypes"
@@ -34,7 +33,6 @@ export default defineConfig({
     codeInput(),
     seoMetaFields(),
     media(),
-    tags({}),
     presentationTool({
       resolve: presentationToolResolve,
       previewUrl: {

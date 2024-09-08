@@ -2,9 +2,9 @@
 
 import { useMemo, useState } from "react"
 import Link from "next/link"
+import { BlogQueryResult } from "@/sanity/types"
 import { Portal } from "@radix-ui/react-portal"
 import { TableOfContents } from "lucide-react"
-import { BlogQueryResult } from "sanity.types"
 import { match, P as TS } from "ts-pattern"
 import { headerHeight } from "@/lib/constants"
 import { cn } from "@/lib/utils"
@@ -12,7 +12,6 @@ import { useIsClient } from "@/hooks/useIsClient"
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,

@@ -1,14 +1,14 @@
 import { sanityFetch } from "@/sanity/lib/client"
 import { blogQuery } from "@/sanity/lib/queries"
+import { BlogQueryResult } from "@/sanity/types"
 import { ArrowLeft } from "lucide-react"
-import { BlogQueryResult } from "sanity.types"
 import { metadataGeneratorFor } from "@/lib/metadata"
 import { IconAsText } from "@/components/ui/icon-as-text"
 import { Link } from "@/components/ui/link"
 import { H1 } from "@/components/ui/typography"
+import { BlogCategories } from "@/components/blog-categories"
 import { BlogStats } from "@/components/blog-stats"
 import { BlogTableOfContents } from "@/components/blog-table-of-contents"
-import { BlogTags } from "@/components/blog-tags"
 import { PortableText } from "@/components/portable-text"
 
 type Props = {
@@ -38,7 +38,7 @@ export default async function BlogPage({ params }: Props) {
         <H1>{blog.title}</H1>
         <BlogStats blog={blog} className="mt-2" />
         <div className="mt-4 flex flex-wrap gap-2">
-          <BlogTags blog={blog} />
+          <BlogCategories blog={blog} />
         </div>
         {blog.content && (
           <PortableText value={blog.content} enableHeaderLinks />

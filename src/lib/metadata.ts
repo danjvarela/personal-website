@@ -6,8 +6,7 @@ import {
   SeoMetaFields,
   SeoQueryResult,
   SlugSpecificSeoQueryResult,
-} from "sanity.types"
-import { match } from "ts-pattern"
+} from "@/sanity/types"
 import { defaultMetadata } from "./constants"
 
 export function resolveUrl(str: string) {

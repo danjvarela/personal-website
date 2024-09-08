@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next"
 import { sanityFetch } from "@/sanity/lib/client"
 import { allPagesQuery } from "@/sanity/lib/queries"
-import { AllPagesQueryResult } from "sanity.types"
+import { AllPagesQueryResult } from "@/sanity/types"
 import { match } from "ts-pattern"
 import { resolveUrl } from "@/lib/metadata"
 
