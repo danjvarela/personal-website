@@ -23,6 +23,7 @@ import { CodeBlock } from "./code-block"
 import { HeadingWithLink } from "./heading-with-link"
 import { LinkWithIcon } from "./link-with-icon"
 import { MuxPlayer } from "./mux-player"
+import { Note } from "./note"
 
 export function PortableText({
   enableHeaderLinks = false,
@@ -78,6 +79,15 @@ export function PortableText({
               <MuxPlayer
                 playbackId={value?.asset?.playbackId}
                 className="mt-6"
+              />
+            )
+          },
+          note: ({ value }) => {
+            return (
+              <Note
+                variant={value.type}
+                title={value.title}
+                body={<PortableText value={value.content} />}
               />
             )
           },

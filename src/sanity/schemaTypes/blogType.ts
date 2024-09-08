@@ -75,6 +75,9 @@ export const blogType = defineType({
         defineArrayMember({
           type: "mux.video",
         }),
+        defineArrayMember({
+          type: "note",
+        }),
       ],
     }),
     defineField({
