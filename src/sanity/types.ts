@@ -114,6 +114,7 @@ export type Blog = {
   _rev: string
   title?: string
   slug?: Slug
+  publishedAt?: string
   content?: Array<
     | {
         children?: Array<
@@ -656,7 +657,7 @@ export type WorksQueryResult = {
   seo?: SeoMetaFields
 } | null
 // Variable: blogsQuery
-// Query: *[_type == "blog"]{    "categories": categories[]->{      slug,      name    },    title,    content,    slug,    _createdAt,    _id  } | order(_createdAt desc)
+// Query: *[_type == "blog"]{    "categories": categories[]->{      slug,      name    },    title,    content,    slug,    _createdAt,    publishedAt,    _id  } | order(_createdAt desc)
 export type BlogsQueryResult = Array<{
   categories: Array<{
     slug: Slug | null
@@ -714,10 +715,11 @@ export type BlogsQueryResult = Array<{
   > | null
   slug: Slug | null
   _createdAt: string
+  publishedAt: string | null
   _id: string
 }>
 // Variable: categoryBlogsQuery
-// Query: *[_type == "blog" && count((categories[]->slug.current)[@ in [$slug]]) > 0]{    "categories": categories[]->{      slug,      name    },    title,    content,    slug,    _createdAt,    _id  } | order(_createdAt desc)
+// Query: *[_type == "blog" && count((categories[]->slug.current)[@ in [$slug]]) > 0]{    "categories": categories[]->{      slug,      name    },    title,    content,    slug,    _createdAt,    publishedAt,    _id  } | order(_createdAt desc)
 export type CategoryBlogsQueryResult = Array<{
   categories: Array<{
     slug: Slug | null
@@ -775,6 +777,7 @@ export type CategoryBlogsQueryResult = Array<{
   > | null
   slug: Slug | null
   _createdAt: string
+  publishedAt: string | null
   _id: string
 }>
 // Variable: categoryQuery
@@ -784,7 +787,7 @@ export type CategoryQueryResult = {
   name: string | null
 } | null
 // Variable: blogQuery
-// Query: *[_type == "blog" && slug.current == $slug]{    "categories": categories[]->{      slug,      name    },    title,    slug,    _createdAt,    _id,    "content":content[]{      ...,      title,      description,      altText,      "asset":asset->{        ...,        altText,        _ref,        _type,        description,        "tags": opt.media.tags[]->name.current,        title,        playbackId,        assetId,        filename,      }    }  }[0]
+// Query: *[_type == "blog" && slug.current == $slug]{    "categories": categories[]->{      slug,      name    },    title,    slug,    _createdAt,    publishedAt,    _id,    "content":content[]{      ...,      title,      description,      altText,      "asset":asset->{        ...,        altText,        _ref,        _type,        description,        "tags": opt.media.tags[]->name.current,        title,        playbackId,        assetId,        filename,      }    }  }[0]
 export type BlogQueryResult = {
   categories: Array<{
     slug: Slug | null
@@ -793,6 +796,7 @@ export type BlogQueryResult = {
   title: string | null
   slug: Slug | null
   _createdAt: string
+  publishedAt: string | null
   _id: string
   content: Array<
     | {
@@ -952,6 +956,7 @@ export type AllPagesQueryResult = Array<
       _rev: string
       title?: string
       slug?: Slug
+      publishedAt?: string
       content?: Array<
         | ({
             _key: string

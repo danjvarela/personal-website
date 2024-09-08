@@ -23,6 +23,7 @@ export const blogsQuery = groq`
     content,
     slug,
     _createdAt,
+    publishedAt,
     _id
   } | order(_createdAt desc)
 `
@@ -37,6 +38,7 @@ export const categoryBlogsQuery = groq`
     content,
     slug,
     _createdAt,
+    publishedAt,
     _id
   } | order(_createdAt desc)
 `
@@ -57,6 +59,7 @@ export const blogQuery = groq`
     title,
     slug,
     _createdAt,
+    publishedAt,
     _id,
     "content":content[]{
       ...,

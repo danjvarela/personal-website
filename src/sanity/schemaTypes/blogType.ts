@@ -25,6 +25,11 @@ export const blogType = defineType({
       },
     }),
     defineField({
+      title: "",
+      name: "publishedAt",
+      type: "date",
+    }),
+    defineField({
       title: "Content",
       name: "content",
       type: "array",

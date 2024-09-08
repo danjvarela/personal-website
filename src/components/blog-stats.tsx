@@ -15,7 +15,7 @@ type Props = {
 export function BlogStats({ blog, className }: Props) {
   if (!blog) return null
 
-  const publishedDate = new Date(blog._createdAt)
+  const publishedDate = new Date(blog.publishedAt || blog._createdAt)
   const formattedDate = format(publishedDate, "MMMM dd, yyyy")
   const formattedFromNow = formatDistanceToNow(publishedDate)
   const readTime = readingTime(
