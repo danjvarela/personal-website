@@ -7,7 +7,7 @@ import { Blog } from "@/components/blog"
 
 export const generateMetadata = metadataGeneratorFor("blogs")
 
-export const dynamic = "force-dynamic"
+export const revalidate = 3600
 
 export default async function BlogsPage({}) {
   const blogs = await sanityFetch<BlogsQueryResult>({
